@@ -10,6 +10,7 @@ project "Vulkan-Headers"
 
 	files {
 		"./include/**.h",
+		"./include/**.hpp",
 	}
 
  	filter "system:windows"
