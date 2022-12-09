@@ -901,6 +901,26 @@ namespace VULKAN_HPP_NAMESPACE
         vkCmdEndDebugUtilsLabelEXT      = PFN_vkCmdEndDebugUtilsLabelEXT( vkGetDeviceProcAddr( device, "vkCmdEndDebugUtilsLabelEXT" ) );
         vkCmdInsertDebugUtilsLabelEXT   = PFN_vkCmdInsertDebugUtilsLabelEXT( vkGetDeviceProcAddr( device, "vkCmdInsertDebugUtilsLabelEXT" ) );
 
+        //=== VK_EXT_descriptor_buffer ===
+        vkGetDescriptorSetLayoutSizeEXT = PFN_vkGetDescriptorSetLayoutSizeEXT( vkGetDeviceProcAddr( device, "vkGetDescriptorSetLayoutSizeEXT" ) );
+        vkGetDescriptorSetLayoutBindingOffsetEXT =
+          PFN_vkGetDescriptorSetLayoutBindingOffsetEXT( vkGetDeviceProcAddr( device, "vkGetDescriptorSetLayoutBindingOffsetEXT" ) );
+        vkGetDescriptorEXT                 = PFN_vkGetDescriptorEXT( vkGetDeviceProcAddr( device, "vkGetDescriptorEXT" ) );
+        vkCmdBindDescriptorBuffersEXT      = PFN_vkCmdBindDescriptorBuffersEXT( vkGetDeviceProcAddr( device, "vkCmdBindDescriptorBuffersEXT" ) );
+        vkCmdSetDescriptorBufferOffsetsEXT = PFN_vkCmdSetDescriptorBufferOffsetsEXT( vkGetDeviceProcAddr( device, "vkCmdSetDescriptorBufferOffsetsEXT" ) );
+        vkCmdBindDescriptorBufferEmbeddedSamplersEXT =
+          PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT( vkGetDeviceProcAddr( device, "vkCmdBindDescriptorBufferEmbeddedSamplersEXT" ) );
+        vkGetBufferOpaqueCaptureDescriptorDataEXT =
+          PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT( vkGetDeviceProcAddr( device, "vkGetBufferOpaqueCaptureDescriptorDataEXT" ) );
+        vkGetImageOpaqueCaptureDescriptorDataEXT =
+          PFN_vkGetImageOpaqueCaptureDescriptorDataEXT( vkGetDeviceProcAddr( device, "vkGetImageOpaqueCaptureDescriptorDataEXT" ) );
+        vkGetImageViewOpaqueCaptureDescriptorDataEXT =
+          PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT( vkGetDeviceProcAddr( device, "vkGetImageViewOpaqueCaptureDescriptorDataEXT" ) );
+        vkGetSamplerOpaqueCaptureDescriptorDataEXT =
+          PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT( vkGetDeviceProcAddr( device, "vkGetSamplerOpaqueCaptureDescriptorDataEXT" ) );
+        vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT = PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(
+          vkGetDeviceProcAddr( device, "vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT" ) );
+
         //=== VK_EXT_device_fault ===
         vkGetDeviceFaultInfoEXT = PFN_vkGetDeviceFaultInfoEXT( vkGetDeviceProcAddr( device, "vkGetDeviceFaultInfoEXT" ) );
 
@@ -1088,6 +1108,9 @@ namespace VULKAN_HPP_NAMESPACE
         vkGetShaderModuleIdentifierEXT = PFN_vkGetShaderModuleIdentifierEXT( vkGetDeviceProcAddr( device, "vkGetShaderModuleIdentifierEXT" ) );
         vkGetShaderModuleCreateInfoIdentifierEXT =
           PFN_vkGetShaderModuleCreateInfoIdentifierEXT( vkGetDeviceProcAddr( device, "vkGetShaderModuleCreateInfoIdentifierEXT" ) );
+
+        //=== VK_EXT_swapchain_maintenance1 ===
+        vkReleaseSwapchainImagesEXT = PFN_vkReleaseSwapchainImagesEXT( vkGetDeviceProcAddr( device, "vkReleaseSwapchainImagesEXT" ) );
 
         //=== VK_EXT_transform_feedback ===
         vkCmdBindTransformFeedbackBuffersEXT =
@@ -1823,6 +1846,19 @@ namespace VULKAN_HPP_NAMESPACE
       PFN_vkCmdEndDebugUtilsLabelEXT      vkCmdEndDebugUtilsLabelEXT      = 0;
       PFN_vkCmdInsertDebugUtilsLabelEXT   vkCmdInsertDebugUtilsLabelEXT   = 0;
 
+      //=== VK_EXT_descriptor_buffer ===
+      PFN_vkGetDescriptorSetLayoutSizeEXT                          vkGetDescriptorSetLayoutSizeEXT                          = 0;
+      PFN_vkGetDescriptorSetLayoutBindingOffsetEXT                 vkGetDescriptorSetLayoutBindingOffsetEXT                 = 0;
+      PFN_vkGetDescriptorEXT                                       vkGetDescriptorEXT                                       = 0;
+      PFN_vkCmdBindDescriptorBuffersEXT                            vkCmdBindDescriptorBuffersEXT                            = 0;
+      PFN_vkCmdSetDescriptorBufferOffsetsEXT                       vkCmdSetDescriptorBufferOffsetsEXT                       = 0;
+      PFN_vkCmdBindDescriptorBufferEmbeddedSamplersEXT             vkCmdBindDescriptorBufferEmbeddedSamplersEXT             = 0;
+      PFN_vkGetBufferOpaqueCaptureDescriptorDataEXT                vkGetBufferOpaqueCaptureDescriptorDataEXT                = 0;
+      PFN_vkGetImageOpaqueCaptureDescriptorDataEXT                 vkGetImageOpaqueCaptureDescriptorDataEXT                 = 0;
+      PFN_vkGetImageViewOpaqueCaptureDescriptorDataEXT             vkGetImageViewOpaqueCaptureDescriptorDataEXT             = 0;
+      PFN_vkGetSamplerOpaqueCaptureDescriptorDataEXT               vkGetSamplerOpaqueCaptureDescriptorDataEXT               = 0;
+      PFN_vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT = 0;
+
       //=== VK_EXT_device_fault ===
       PFN_vkGetDeviceFaultInfoEXT vkGetDeviceFaultInfoEXT = 0;
 
@@ -1968,6 +2004,9 @@ namespace VULKAN_HPP_NAMESPACE
       //=== VK_EXT_shader_module_identifier ===
       PFN_vkGetShaderModuleIdentifierEXT           vkGetShaderModuleIdentifierEXT           = 0;
       PFN_vkGetShaderModuleCreateInfoIdentifierEXT vkGetShaderModuleCreateInfoIdentifierEXT = 0;
+
+      //=== VK_EXT_swapchain_maintenance1 ===
+      PFN_vkReleaseSwapchainImagesEXT vkReleaseSwapchainImagesEXT = 0;
 
       //=== VK_EXT_transform_feedback ===
       PFN_vkCmdBindTransformFeedbackBuffersEXT vkCmdBindTransformFeedbackBuffersEXT = 0;
@@ -3900,6 +3939,10 @@ namespace VULKAN_HPP_NAMESPACE
       VULKAN_HPP_NODISCARD std::vector<VULKAN_HPP_NAMESPACE::PipelineExecutableInternalRepresentationKHR>
                            getPipelineExecutableInternalRepresentationsKHR( const VULKAN_HPP_NAMESPACE::PipelineExecutableInfoKHR & executableInfo ) const;
 
+      //=== VK_EXT_swapchain_maintenance1 ===
+
+      void releaseSwapchainImagesEXT( const VULKAN_HPP_NAMESPACE::ReleaseSwapchainImagesInfoEXT & releaseInfo ) const;
+
       //=== VK_NV_device_generated_commands ===
 
       VULKAN_HPP_NODISCARD VULKAN_HPP_NAMESPACE::MemoryRequirements2
@@ -3940,6 +3983,28 @@ namespace VULKAN_HPP_NAMESPACE
       template <typename X, typename Y, typename... Z>
       VULKAN_HPP_NODISCARD StructureChain<X, Y, Z...> exportMetalObjectsEXT() const VULKAN_HPP_NOEXCEPT;
 #  endif /*VK_USE_PLATFORM_METAL_EXT*/
+
+      //=== VK_EXT_descriptor_buffer ===
+
+      template <typename DescriptorType>
+      VULKAN_HPP_NODISCARD DescriptorType getDescriptorEXT( const VULKAN_HPP_NAMESPACE::DescriptorGetInfoEXT & descriptorInfo ) const VULKAN_HPP_NOEXCEPT;
+
+      template <typename DataType>
+      VULKAN_HPP_NODISCARD DataType getBufferOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::BufferCaptureDescriptorDataInfoEXT & info ) const;
+
+      template <typename DataType>
+      VULKAN_HPP_NODISCARD DataType getImageOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::ImageCaptureDescriptorDataInfoEXT & info ) const;
+
+      template <typename DataType>
+      VULKAN_HPP_NODISCARD DataType
+        getImageViewOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::ImageViewCaptureDescriptorDataInfoEXT & info ) const;
+
+      template <typename DataType>
+      VULKAN_HPP_NODISCARD DataType getSamplerOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::SamplerCaptureDescriptorDataInfoEXT & info ) const;
+
+      template <typename DataType>
+      VULKAN_HPP_NODISCARD DataType
+        getAccelerationStructureOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::AccelerationStructureCaptureDescriptorDataInfoEXT & info ) const;
 
       //=== VK_EXT_device_fault ===
 
@@ -5558,6 +5623,21 @@ namespace VULKAN_HPP_NAMESPACE
                                   VULKAN_HPP_NAMESPACE::DeviceSize          dstOffset,
                                   uint32_t                                  marker ) const VULKAN_HPP_NOEXCEPT;
 
+      //=== VK_EXT_descriptor_buffer ===
+
+      void bindDescriptorBuffersEXT( VULKAN_HPP_NAMESPACE::ArrayProxy<const VULKAN_HPP_NAMESPACE::DescriptorBufferBindingInfoEXT> const & bindingInfos ) const
+        VULKAN_HPP_NOEXCEPT;
+
+      void setDescriptorBufferOffsetsEXT( VULKAN_HPP_NAMESPACE::PipelineBindPoint                                          pipelineBindPoint,
+                                          VULKAN_HPP_NAMESPACE::PipelineLayout                                             layout,
+                                          uint32_t                                                                         firstSet,
+                                          VULKAN_HPP_NAMESPACE::ArrayProxy<const uint32_t> const &                         bufferIndices,
+                                          VULKAN_HPP_NAMESPACE::ArrayProxy<const VULKAN_HPP_NAMESPACE::DeviceSize> const & offsets ) const;
+
+      void bindDescriptorBufferEmbeddedSamplersEXT( VULKAN_HPP_NAMESPACE::PipelineBindPoint pipelineBindPoint,
+                                                    VULKAN_HPP_NAMESPACE::PipelineLayout    layout,
+                                                    uint32_t                                set ) const VULKAN_HPP_NOEXCEPT;
+
       //=== VK_NV_fragment_shading_rate_enums ===
 
       void setFragmentShadingRateEnumNV( VULKAN_HPP_NAMESPACE::FragmentShadingRateNV                  shadingRate,
@@ -6804,6 +6884,12 @@ namespace VULKAN_HPP_NAMESPACE
         std::swap( m_allocator, rhs.m_allocator );
         std::swap( m_dispatcher, rhs.m_dispatcher );
       }
+
+      //=== VK_EXT_descriptor_buffer ===
+
+      VULKAN_HPP_NODISCARD VULKAN_HPP_NAMESPACE::DeviceSize getSizeEXT() const VULKAN_HPP_NOEXCEPT;
+
+      VULKAN_HPP_NODISCARD VULKAN_HPP_NAMESPACE::DeviceSize getBindingOffsetEXT( uint32_t binding ) const VULKAN_HPP_NOEXCEPT;
 
     private:
       VULKAN_HPP_NAMESPACE::Device                                              m_device              = {};
@@ -17288,6 +17374,18 @@ namespace VULKAN_HPP_NAMESPACE
       return internalRepresentations;
     }
 
+    //=== VK_EXT_swapchain_maintenance1 ===
+
+    VULKAN_HPP_INLINE void Device::releaseSwapchainImagesEXT( const VULKAN_HPP_NAMESPACE::ReleaseSwapchainImagesInfoEXT & releaseInfo ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkReleaseSwapchainImagesEXT &&
+                         "Function <vkReleaseSwapchainImagesEXT> needs extension <VK_EXT_swapchain_maintenance1> enabled!" );
+
+      VkResult result = getDispatcher()->vkReleaseSwapchainImagesEXT( static_cast<VkDevice>( m_device ),
+                                                                      reinterpret_cast<const VkReleaseSwapchainImagesInfoEXT *>( &releaseInfo ) );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ), VULKAN_HPP_NAMESPACE_STRING "::Device::releaseSwapchainImagesEXT" );
+    }
+
     //=== VK_NV_device_generated_commands ===
 
     VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE VULKAN_HPP_NAMESPACE::MemoryRequirements2
@@ -17559,6 +17657,170 @@ namespace VULKAN_HPP_NAMESPACE
         checkpointData.resize( checkpointDataCount );
       }
       return checkpointData;
+    }
+
+    //=== VK_EXT_descriptor_buffer ===
+
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE VULKAN_HPP_NAMESPACE::DeviceSize DescriptorSetLayout::getSizeEXT() const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetDescriptorSetLayoutSizeEXT &&
+                         "Function <vkGetDescriptorSetLayoutSizeEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      VULKAN_HPP_NAMESPACE::DeviceSize layoutSizeInBytes;
+      getDispatcher()->vkGetDescriptorSetLayoutSizeEXT( static_cast<VkDevice>( m_device ),
+                                                        static_cast<VkDescriptorSetLayout>( m_descriptorSetLayout ),
+                                                        reinterpret_cast<VkDeviceSize *>( &layoutSizeInBytes ) );
+
+      return layoutSizeInBytes;
+    }
+
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE VULKAN_HPP_NAMESPACE::DeviceSize
+                                           DescriptorSetLayout::getBindingOffsetEXT( uint32_t binding ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetDescriptorSetLayoutBindingOffsetEXT &&
+                         "Function <vkGetDescriptorSetLayoutBindingOffsetEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      VULKAN_HPP_NAMESPACE::DeviceSize offset;
+      getDispatcher()->vkGetDescriptorSetLayoutBindingOffsetEXT(
+        static_cast<VkDevice>( m_device ), static_cast<VkDescriptorSetLayout>( m_descriptorSetLayout ), binding, reinterpret_cast<VkDeviceSize *>( &offset ) );
+
+      return offset;
+    }
+
+    template <typename DescriptorType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DescriptorType
+      Device::getDescriptorEXT( const VULKAN_HPP_NAMESPACE::DescriptorGetInfoEXT & descriptorInfo ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetDescriptorEXT && "Function <vkGetDescriptorEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DescriptorType descriptor;
+      getDispatcher()->vkGetDescriptorEXT( static_cast<VkDevice>( m_device ),
+                                           reinterpret_cast<const VkDescriptorGetInfoEXT *>( &descriptorInfo ),
+                                           sizeof( DescriptorType ),
+                                           reinterpret_cast<void *>( &descriptor ) );
+
+      return descriptor;
+    }
+
+    VULKAN_HPP_INLINE void CommandBuffer::bindDescriptorBuffersEXT(
+      VULKAN_HPP_NAMESPACE::ArrayProxy<const VULKAN_HPP_NAMESPACE::DescriptorBufferBindingInfoEXT> const & bindingInfos ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdBindDescriptorBuffersEXT &&
+                         "Function <vkCmdBindDescriptorBuffersEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      getDispatcher()->vkCmdBindDescriptorBuffersEXT( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                                      bindingInfos.size(),
+                                                      reinterpret_cast<const VkDescriptorBufferBindingInfoEXT *>( bindingInfos.data() ) );
+    }
+
+    VULKAN_HPP_INLINE void
+      CommandBuffer::setDescriptorBufferOffsetsEXT( VULKAN_HPP_NAMESPACE::PipelineBindPoint                                          pipelineBindPoint,
+                                                    VULKAN_HPP_NAMESPACE::PipelineLayout                                             layout,
+                                                    uint32_t                                                                         firstSet,
+                                                    VULKAN_HPP_NAMESPACE::ArrayProxy<const uint32_t> const &                         bufferIndices,
+                                                    VULKAN_HPP_NAMESPACE::ArrayProxy<const VULKAN_HPP_NAMESPACE::DeviceSize> const & offsets ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetDescriptorBufferOffsetsEXT &&
+                         "Function <vkCmdSetDescriptorBufferOffsetsEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+      if ( bufferIndices.size() != offsets.size() )
+      {
+        throw LogicError( VULKAN_HPP_NAMESPACE_STRING "::CommandBuffer::setDescriptorBufferOffsetsEXT: bufferIndices.size() != offsets.size()" );
+      }
+
+      getDispatcher()->vkCmdSetDescriptorBufferOffsetsEXT( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                                           static_cast<VkPipelineBindPoint>( pipelineBindPoint ),
+                                                           static_cast<VkPipelineLayout>( layout ),
+                                                           firstSet,
+                                                           bufferIndices.size(),
+                                                           bufferIndices.data(),
+                                                           reinterpret_cast<const VkDeviceSize *>( offsets.data() ) );
+    }
+
+    VULKAN_HPP_INLINE void CommandBuffer::bindDescriptorBufferEmbeddedSamplersEXT( VULKAN_HPP_NAMESPACE::PipelineBindPoint pipelineBindPoint,
+                                                                                   VULKAN_HPP_NAMESPACE::PipelineLayout    layout,
+                                                                                   uint32_t                                set ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdBindDescriptorBufferEmbeddedSamplersEXT &&
+                         "Function <vkCmdBindDescriptorBufferEmbeddedSamplersEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      getDispatcher()->vkCmdBindDescriptorBufferEmbeddedSamplersEXT(
+        static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkPipelineBindPoint>( pipelineBindPoint ), static_cast<VkPipelineLayout>( layout ), set );
+    }
+
+    template <typename DataType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DataType
+      Device::getBufferOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::BufferCaptureDescriptorDataInfoEXT & info ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetBufferOpaqueCaptureDescriptorDataEXT &&
+                         "Function <vkGetBufferOpaqueCaptureDescriptorDataEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DataType data;
+      VkResult result = getDispatcher()->vkGetBufferOpaqueCaptureDescriptorDataEXT(
+        static_cast<VkDevice>( m_device ), reinterpret_cast<const VkBufferCaptureDescriptorDataInfoEXT *>( &info ), &data );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ), VULKAN_HPP_NAMESPACE_STRING "::Device::getBufferOpaqueCaptureDescriptorDataEXT" );
+
+      return data;
+    }
+
+    template <typename DataType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DataType
+      Device::getImageOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::ImageCaptureDescriptorDataInfoEXT & info ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetImageOpaqueCaptureDescriptorDataEXT &&
+                         "Function <vkGetImageOpaqueCaptureDescriptorDataEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DataType data;
+      VkResult result = getDispatcher()->vkGetImageOpaqueCaptureDescriptorDataEXT(
+        static_cast<VkDevice>( m_device ), reinterpret_cast<const VkImageCaptureDescriptorDataInfoEXT *>( &info ), &data );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ), VULKAN_HPP_NAMESPACE_STRING "::Device::getImageOpaqueCaptureDescriptorDataEXT" );
+
+      return data;
+    }
+
+    template <typename DataType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DataType
+      Device::getImageViewOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::ImageViewCaptureDescriptorDataInfoEXT & info ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetImageViewOpaqueCaptureDescriptorDataEXT &&
+                         "Function <vkGetImageViewOpaqueCaptureDescriptorDataEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DataType data;
+      VkResult result = getDispatcher()->vkGetImageViewOpaqueCaptureDescriptorDataEXT(
+        static_cast<VkDevice>( m_device ), reinterpret_cast<const VkImageViewCaptureDescriptorDataInfoEXT *>( &info ), &data );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ), VULKAN_HPP_NAMESPACE_STRING "::Device::getImageViewOpaqueCaptureDescriptorDataEXT" );
+
+      return data;
+    }
+
+    template <typename DataType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DataType
+      Device::getSamplerOpaqueCaptureDescriptorDataEXT( const VULKAN_HPP_NAMESPACE::SamplerCaptureDescriptorDataInfoEXT & info ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetSamplerOpaqueCaptureDescriptorDataEXT &&
+                         "Function <vkGetSamplerOpaqueCaptureDescriptorDataEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DataType data;
+      VkResult result = getDispatcher()->vkGetSamplerOpaqueCaptureDescriptorDataEXT(
+        static_cast<VkDevice>( m_device ), reinterpret_cast<const VkSamplerCaptureDescriptorDataInfoEXT *>( &info ), &data );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ), VULKAN_HPP_NAMESPACE_STRING "::Device::getSamplerOpaqueCaptureDescriptorDataEXT" );
+
+      return data;
+    }
+
+    template <typename DataType>
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE DataType Device::getAccelerationStructureOpaqueCaptureDescriptorDataEXT(
+      const VULKAN_HPP_NAMESPACE::AccelerationStructureCaptureDescriptorDataInfoEXT & info ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT &&
+                         "Function <vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT> needs extension <VK_EXT_descriptor_buffer> enabled!" );
+
+      DataType data;
+      VkResult result = getDispatcher()->vkGetAccelerationStructureOpaqueCaptureDescriptorDataEXT(
+        static_cast<VkDevice>( m_device ), reinterpret_cast<const VkAccelerationStructureCaptureDescriptorDataInfoEXT *>( &info ), &data );
+      resultCheck( static_cast<VULKAN_HPP_NAMESPACE::Result>( result ),
+                   VULKAN_HPP_NAMESPACE_STRING "::Device::getAccelerationStructureOpaqueCaptureDescriptorDataEXT" );
+
+      return data;
     }
 
     //=== VK_NV_fragment_shading_rate_enums ===
