@@ -13,7 +13,7 @@ project "Vulkan-Headers"
 		"./include/**.hpp",
 	}
 
-	filter "action:vs*"
+	filter "toolset:msc"
 		disablewarnings { "4244" }
 
  	filter "system:windows"
