@@ -1,4 +1,4 @@
-// Copyright 2015-2022 The Khronos Group Inc.
+// Copyright 2015-2023 The Khronos Group Inc.
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 //
@@ -5523,6 +5523,20 @@ namespace std
   };
 
   template <>
+  struct hash<VULKAN_HPP_NAMESPACE::ImageViewSlicedCreateInfoEXT>
+  {
+    std::size_t operator()( VULKAN_HPP_NAMESPACE::ImageViewSlicedCreateInfoEXT const & imageViewSlicedCreateInfoEXT ) const VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, imageViewSlicedCreateInfoEXT.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, imageViewSlicedCreateInfoEXT.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, imageViewSlicedCreateInfoEXT.sliceOffset );
+      VULKAN_HPP_HASH_COMBINE( seed, imageViewSlicedCreateInfoEXT.sliceCount );
+      return seed;
+    }
+  };
+
+  template <>
   struct hash<VULKAN_HPP_NAMESPACE::ImageViewUsageCreateInfo>
   {
     std::size_t operator()( VULKAN_HPP_NAMESPACE::ImageViewUsageCreateInfo const & imageViewUsageCreateInfo ) const VULKAN_HPP_NOEXCEPT
@@ -6361,6 +6375,22 @@ namespace std
       VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewAttributesInfoNVX.pNext );
       VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewAttributesInfoNVX.perViewAttributes );
       VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewAttributesInfoNVX.perViewAttributesPositionXOnly );
+      return seed;
+    }
+  };
+
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM>
+  {
+    std::size_t
+      operator()( VULKAN_HPP_NAMESPACE::MultiviewPerViewRenderAreasRenderPassBeginInfoQCOM const & multiviewPerViewRenderAreasRenderPassBeginInfoQCOM ) const
+      VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewRenderAreasRenderPassBeginInfoQCOM.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewRenderAreasRenderPassBeginInfoQCOM.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewRenderAreasRenderPassBeginInfoQCOM.perViewRenderAreaCount );
+      VULKAN_HPP_HASH_COMBINE( seed, multiviewPerViewRenderAreasRenderPassBeginInfoQCOM.pPerViewRenderAreas );
       return seed;
     }
   };
@@ -8123,6 +8153,20 @@ namespace std
   };
 
   template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT>
+  {
+    std::size_t operator()( VULKAN_HPP_NAMESPACE::PhysicalDeviceImageSlicedViewOf3DFeaturesEXT const & physicalDeviceImageSlicedViewOf3DFeaturesEXT ) const
+      VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceImageSlicedViewOf3DFeaturesEXT.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceImageSlicedViewOf3DFeaturesEXT.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceImageSlicedViewOf3DFeaturesEXT.imageSlicedViewOf3D );
+      return seed;
+    }
+  };
+
+  template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceImageViewImageFormatInfoEXT>
   {
     std::size_t
@@ -8756,6 +8800,20 @@ namespace std
   };
 
   template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM>
+  {
+    std::size_t operator()( VULKAN_HPP_NAMESPACE::PhysicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM const &
+                              physicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM ) const VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceMultiviewPerViewRenderAreasFeaturesQCOM.multiviewPerViewRenderAreas );
+      return seed;
+    }
+  };
+
+  template <>
   struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceMultiviewPerViewViewportsFeaturesQCOM>
   {
     std::size_t
@@ -8966,6 +9024,20 @@ namespace std
       VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineExecutablePropertiesFeaturesKHR.sType );
       VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineExecutablePropertiesFeaturesKHR.pNext );
       VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineExecutablePropertiesFeaturesKHR.pipelineExecutableInfo );
+      return seed;
+    }
+  };
+
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT>
+  {
+    std::size_t operator()( VULKAN_HPP_NAMESPACE::PhysicalDevicePipelineLibraryGroupHandlesFeaturesEXT const &
+                              physicalDevicePipelineLibraryGroupHandlesFeaturesEXT ) const VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineLibraryGroupHandlesFeaturesEXT.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineLibraryGroupHandlesFeaturesEXT.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDevicePipelineLibraryGroupHandlesFeaturesEXT.pipelineLibraryGroupHandles );
       return seed;
     }
   };
@@ -9729,6 +9801,22 @@ namespace std
       VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesAMD.minVgprAllocation );
       VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesAMD.maxVgprAllocation );
       VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesAMD.vgprAllocationGranularity );
+      return seed;
+    }
+  };
+
+  template <>
+  struct hash<VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderCorePropertiesARM>
+  {
+    std::size_t
+      operator()( VULKAN_HPP_NAMESPACE::PhysicalDeviceShaderCorePropertiesARM const & physicalDeviceShaderCorePropertiesARM ) const VULKAN_HPP_NOEXCEPT
+    {
+      std::size_t seed = 0;
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesARM.sType );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesARM.pNext );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesARM.pixelRate );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesARM.texelRate );
+      VULKAN_HPP_HASH_COMBINE( seed, physicalDeviceShaderCorePropertiesARM.fmaRate );
       return seed;
     }
   };
