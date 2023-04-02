@@ -1,7 +1,7 @@
 include "../../premake/common_premake_defines.lua"
 
 project "Vulkan-Headers"
-	kind "StaticLib"
+	kind "None"
 	language "C++"
 	cppdialect "C++latest"
 	cdialect "C17"
