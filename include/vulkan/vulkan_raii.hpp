@@ -1,5 +1,4 @@
 // Copyright 2015-2026 The Khronos Group Inc.
-//
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 //
 
@@ -386,6 +385,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
           vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM(
             vkGetInstanceProcAddr( instance, "vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM" ) );
 
+          //=== VK_ARM_data_graph_instruction_set_tosa ===
+          vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM(
+            vkGetInstanceProcAddr( instance, "vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM" ) );
+
           //=== VK_KHR_calibrated_timestamps ===
           vkGetPhysicalDeviceCalibrateableTimeDomainsKHR =
             PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR( vkGetInstanceProcAddr( instance, "vkGetPhysicalDeviceCalibrateableTimeDomainsKHR" ) );
@@ -406,6 +409,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
           //=== VK_ARM_shader_instrumentation ===
           vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM(
             vkGetInstanceProcAddr( instance, "vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM" ) );
+
+          //=== VK_ARM_data_graph_optical_flow ===
+          vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+            vkGetInstanceProcAddr( instance, "vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM" ) );
 
 #  if defined( VK_USE_PLATFORM_UBM_SEC )
           //=== VK_SEC_ubm_surface ===
@@ -701,6 +708,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         PFN_vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM                 vkGetPhysicalDeviceQueueFamilyDataGraphPropertiesARM                 = 0;
         PFN_vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphProcessingEnginePropertiesARM = 0;
 
+        //=== VK_ARM_data_graph_instruction_set_tosa ===
+        PFN_vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM = 0;
+
         //=== VK_KHR_calibrated_timestamps ===
         PFN_vkGetPhysicalDeviceCalibrateableTimeDomainsKHR vkGetPhysicalDeviceCalibrateableTimeDomainsKHR = 0;
 
@@ -719,6 +729,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
         //=== VK_ARM_shader_instrumentation ===
         PFN_vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM = 0;
+
+        //=== VK_ARM_data_graph_optical_flow ===
+        PFN_vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM = 0;
 
 #  if defined( VK_USE_PLATFORM_UBM_SEC )
         //=== VK_SEC_ubm_surface ===
@@ -1174,6 +1187,20 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
             PFN_vkGetMemoryAndroidHardwareBufferANDROID( vkGetDeviceProcAddr( device, "vkGetMemoryAndroidHardwareBufferANDROID" ) );
 #  endif /*VK_USE_PLATFORM_ANDROID_KHR*/
 
+          //=== VK_AMD_gpa_interface ===
+          vkCreateGpaSessionAMD         = PFN_vkCreateGpaSessionAMD( vkGetDeviceProcAddr( device, "vkCreateGpaSessionAMD" ) );
+          vkDestroyGpaSessionAMD        = PFN_vkDestroyGpaSessionAMD( vkGetDeviceProcAddr( device, "vkDestroyGpaSessionAMD" ) );
+          vkSetGpaDeviceClockModeAMD    = PFN_vkSetGpaDeviceClockModeAMD( vkGetDeviceProcAddr( device, "vkSetGpaDeviceClockModeAMD" ) );
+          vkGetGpaDeviceClockInfoAMD    = PFN_vkGetGpaDeviceClockInfoAMD( vkGetDeviceProcAddr( device, "vkGetGpaDeviceClockInfoAMD" ) );
+          vkCmdBeginGpaSessionAMD       = PFN_vkCmdBeginGpaSessionAMD( vkGetDeviceProcAddr( device, "vkCmdBeginGpaSessionAMD" ) );
+          vkCmdEndGpaSessionAMD         = PFN_vkCmdEndGpaSessionAMD( vkGetDeviceProcAddr( device, "vkCmdEndGpaSessionAMD" ) );
+          vkCmdBeginGpaSampleAMD        = PFN_vkCmdBeginGpaSampleAMD( vkGetDeviceProcAddr( device, "vkCmdBeginGpaSampleAMD" ) );
+          vkCmdEndGpaSampleAMD          = PFN_vkCmdEndGpaSampleAMD( vkGetDeviceProcAddr( device, "vkCmdEndGpaSampleAMD" ) );
+          vkGetGpaSessionStatusAMD      = PFN_vkGetGpaSessionStatusAMD( vkGetDeviceProcAddr( device, "vkGetGpaSessionStatusAMD" ) );
+          vkGetGpaSessionResultsAMD     = PFN_vkGetGpaSessionResultsAMD( vkGetDeviceProcAddr( device, "vkGetGpaSessionResultsAMD" ) );
+          vkResetGpaSessionAMD          = PFN_vkResetGpaSessionAMD( vkGetDeviceProcAddr( device, "vkResetGpaSessionAMD" ) );
+          vkCmdCopyGpaSessionResultsAMD = PFN_vkCmdCopyGpaSessionResultsAMD( vkGetDeviceProcAddr( device, "vkCmdCopyGpaSessionResultsAMD" ) );
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
           //=== VK_AMDX_shader_enqueue ===
           vkCreateExecutionGraphPipelinesAMDX = PFN_vkCreateExecutionGraphPipelinesAMDX( vkGetDeviceProcAddr( device, "vkCreateExecutionGraphPipelinesAMDX" ) );
@@ -1547,6 +1574,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
             PFN_vkGetEncodedVideoSessionParametersKHR( vkGetDeviceProcAddr( device, "vkGetEncodedVideoSessionParametersKHR" ) );
           vkCmdEncodeVideoKHR = PFN_vkCmdEncodeVideoKHR( vkGetDeviceProcAddr( device, "vkCmdEncodeVideoKHR" ) );
 
+          //=== VK_QCOM_queue_perf_hint ===
+          vkQueueSetPerfHintQCOM = PFN_vkQueueSetPerfHintQCOM( vkGetDeviceProcAddr( device, "vkQueueSetPerfHintQCOM" ) );
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
           //=== VK_NV_cuda_kernel_launch ===
           vkCreateCudaModuleNV    = PFN_vkCreateCudaModuleNV( vkGetDeviceProcAddr( device, "vkCreateCudaModuleNV" ) );
@@ -1766,6 +1796,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
             PFN_vkGetDeviceImageSparseMemoryRequirementsKHR( vkGetDeviceProcAddr( device, "vkGetDeviceImageSparseMemoryRequirementsKHR" ) );
           if ( !vkGetDeviceImageSparseMemoryRequirements )
             vkGetDeviceImageSparseMemoryRequirements = vkGetDeviceImageSparseMemoryRequirementsKHR;
+
+          //=== VK_ARM_scheduling_controls ===
+          vkCmdSetDispatchParametersARM = PFN_vkCmdSetDispatchParametersARM( vkGetDeviceProcAddr( device, "vkCmdSetDispatchParametersARM" ) );
 
           //=== VK_VALVE_descriptor_set_host_mapping ===
           vkGetDescriptorSetLayoutHostMappingInfoVALVE =
@@ -2007,6 +2040,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
           vkUpdateIndirectExecutionSetShaderEXT =
             PFN_vkUpdateIndirectExecutionSetShaderEXT( vkGetDeviceProcAddr( device, "vkUpdateIndirectExecutionSetShaderEXT" ) );
 
+          //=== VK_KHR_device_fault ===
+          vkGetDeviceFaultReportsKHR   = PFN_vkGetDeviceFaultReportsKHR( vkGetDeviceProcAddr( device, "vkGetDeviceFaultReportsKHR" ) );
+          vkGetDeviceFaultDebugInfoKHR = PFN_vkGetDeviceFaultDebugInfoKHR( vkGetDeviceProcAddr( device, "vkGetDeviceFaultDebugInfoKHR" ) );
+
 #  if defined( VK_USE_PLATFORM_METAL_EXT )
           //=== VK_EXT_external_memory_metal ===
           vkGetMemoryMetalHandleEXT           = PFN_vkGetMemoryMetalHandleEXT( vkGetDeviceProcAddr( device, "vkGetMemoryMetalHandleEXT" ) );
@@ -2035,6 +2072,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
           //=== VK_NV_compute_occupancy_priority ===
           vkCmdSetComputeOccupancyPriorityNV = PFN_vkCmdSetComputeOccupancyPriorityNV( vkGetDeviceProcAddr( device, "vkCmdSetComputeOccupancyPriorityNV" ) );
+
+          //=== VK_EXT_primitive_restart_index ===
+          vkCmdSetPrimitiveRestartIndexEXT = PFN_vkCmdSetPrimitiveRestartIndexEXT( vkGetDeviceProcAddr( device, "vkCmdSetPrimitiveRestartIndexEXT" ) );
         }
 
       public:
@@ -2440,6 +2480,20 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         PFN_dummy vkGetMemoryAndroidHardwareBufferANDROID_placeholder     = 0;
 #  endif /*VK_USE_PLATFORM_ANDROID_KHR*/
 
+        //=== VK_AMD_gpa_interface ===
+        PFN_vkCreateGpaSessionAMD         vkCreateGpaSessionAMD         = 0;
+        PFN_vkDestroyGpaSessionAMD        vkDestroyGpaSessionAMD        = 0;
+        PFN_vkSetGpaDeviceClockModeAMD    vkSetGpaDeviceClockModeAMD    = 0;
+        PFN_vkGetGpaDeviceClockInfoAMD    vkGetGpaDeviceClockInfoAMD    = 0;
+        PFN_vkCmdBeginGpaSessionAMD       vkCmdBeginGpaSessionAMD       = 0;
+        PFN_vkCmdEndGpaSessionAMD         vkCmdEndGpaSessionAMD         = 0;
+        PFN_vkCmdBeginGpaSampleAMD        vkCmdBeginGpaSampleAMD        = 0;
+        PFN_vkCmdEndGpaSampleAMD          vkCmdEndGpaSampleAMD          = 0;
+        PFN_vkGetGpaSessionStatusAMD      vkGetGpaSessionStatusAMD      = 0;
+        PFN_vkGetGpaSessionResultsAMD     vkGetGpaSessionResultsAMD     = 0;
+        PFN_vkResetGpaSessionAMD          vkResetGpaSessionAMD          = 0;
+        PFN_vkCmdCopyGpaSessionResultsAMD vkCmdCopyGpaSessionResultsAMD = 0;
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
         //=== VK_AMDX_shader_enqueue ===
         PFN_vkCreateExecutionGraphPipelinesAMDX        vkCreateExecutionGraphPipelinesAMDX        = 0;
@@ -2693,6 +2747,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         PFN_vkGetEncodedVideoSessionParametersKHR vkGetEncodedVideoSessionParametersKHR = 0;
         PFN_vkCmdEncodeVideoKHR                   vkCmdEncodeVideoKHR                   = 0;
 
+        //=== VK_QCOM_queue_perf_hint ===
+        PFN_vkQueueSetPerfHintQCOM vkQueueSetPerfHintQCOM = 0;
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
         //=== VK_NV_cuda_kernel_launch ===
         PFN_vkCreateCudaModuleNV    vkCreateCudaModuleNV    = 0;
@@ -2879,6 +2936,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         PFN_vkGetDeviceBufferMemoryRequirementsKHR      vkGetDeviceBufferMemoryRequirementsKHR      = 0;
         PFN_vkGetDeviceImageMemoryRequirementsKHR       vkGetDeviceImageMemoryRequirementsKHR       = 0;
         PFN_vkGetDeviceImageSparseMemoryRequirementsKHR vkGetDeviceImageSparseMemoryRequirementsKHR = 0;
+
+        //=== VK_ARM_scheduling_controls ===
+        PFN_vkCmdSetDispatchParametersARM vkCmdSetDispatchParametersARM = 0;
 
         //=== VK_VALVE_descriptor_set_host_mapping ===
         PFN_vkGetDescriptorSetLayoutHostMappingInfoVALVE vkGetDescriptorSetLayoutHostMappingInfoVALVE = 0;
@@ -3075,6 +3135,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         PFN_vkUpdateIndirectExecutionSetPipelineEXT     vkUpdateIndirectExecutionSetPipelineEXT     = 0;
         PFN_vkUpdateIndirectExecutionSetShaderEXT       vkUpdateIndirectExecutionSetShaderEXT       = 0;
 
+        //=== VK_KHR_device_fault ===
+        PFN_vkGetDeviceFaultReportsKHR   vkGetDeviceFaultReportsKHR   = 0;
+        PFN_vkGetDeviceFaultDebugInfoKHR vkGetDeviceFaultDebugInfoKHR = 0;
+
 #  if defined( VK_USE_PLATFORM_METAL_EXT )
         //=== VK_EXT_external_memory_metal ===
         PFN_vkGetMemoryMetalHandleEXT           vkGetMemoryMetalHandleEXT           = 0;
@@ -3103,6 +3167,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
         //=== VK_NV_compute_occupancy_priority ===
         PFN_vkCmdSetComputeOccupancyPriorityNV vkCmdSetComputeOccupancyPriorityNV = 0;
+
+        //=== VK_EXT_primitive_restart_index ===
+        PFN_vkCmdSetPrimitiveRestartIndexEXT vkCmdSetPrimitiveRestartIndexEXT = 0;
       };
 
     }  // namespace detail
@@ -3171,6 +3238,9 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     //=== VK_EXT_debug_utils ===
     class DebugUtilsMessengerEXT;
+
+    //=== VK_AMD_gpa_interface ===
+    class GpaSessionAMD;
 
     //=== VK_EXT_descriptor_heap ===
     class TensorARM;
@@ -4280,6 +4350,14 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       VULKAN_HPP_NODISCARD QueueFamilyDataGraphProcessingEnginePropertiesARM getQueueFamilyDataGraphProcessingEnginePropertiesARM(
         PhysicalDeviceQueueFamilyDataGraphProcessingEngineInfoARM const & queueFamilyDataGraphProcessingEngineInfo ) const VULKAN_HPP_NOEXCEPT;
 
+      //=== VK_ARM_data_graph_instruction_set_tosa ===
+
+      // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<BaseOutStructure>::type
+        getQueueFamilyDataGraphEngineOperationPropertiesARM( uint32_t                                  queueFamilyIndex,
+                                                             QueueFamilyDataGraphPropertiesARM const & queueFamilyDataGraphProperties ) const;
+
       //=== VK_KHR_calibrated_timestamps ===
 
       // wrapper function for command vkGetPhysicalDeviceCalibrateableTimeDomainsKHR, see
@@ -4306,6 +4384,15 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkEnumeratePhysicalDeviceShaderInstrumentationMetricsARM.html
       VULKAN_HPP_NODISCARD typename ResultValueType<std::vector<ShaderInstrumentationMetricDescriptionARM>>::type
         enumerateShaderInstrumentationMetricsARM() const;
+
+      //=== VK_ARM_data_graph_optical_flow ===
+
+      // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<std::vector<DataGraphOpticalFlowImageFormatPropertiesARM>>::type
+        getQueueFamilyDataGraphOpticalFlowImageFormatsARM( uint32_t                                       queueFamilyIndex,
+                                                           QueueFamilyDataGraphPropertiesARM const &      queueFamilyDataGraphProperties,
+                                                           DataGraphOpticalFlowImageFormatInfoARM const & opticalFlowImageFormatInfo ) const;
 
 #  if defined( VK_USE_PLATFORM_UBM_SEC )
       //=== VK_SEC_ubm_surface ===
@@ -4995,6 +5082,19 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         getMemoryAndroidHardwareBufferANDROID( MemoryGetAndroidHardwareBufferInfoANDROID const & info ) const;
 #  endif /*VK_USE_PLATFORM_ANDROID_KHR*/
 
+      //=== VK_AMD_gpa_interface ===
+
+      // wrapper function for command vkCreateGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<GpaSessionAMD>::type
+        createGpaSessionAMD( GpaSessionCreateInfoAMD const &     createInfo,
+                             Optional<AllocationCallbacks const> allocator = nullptr ) const VULKAN_HPP_NOEXCEPT_WHEN_NO_EXCEPTIONS;
+
+      // wrapper function for command vkSetGpaDeviceClockModeAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetGpaDeviceClockModeAMD.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<GpaDeviceClockModeInfoAMD>::type setGpaClockModeAMD() const;
+
+      // wrapper function for command vkGetGpaDeviceClockInfoAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaDeviceClockInfoAMD.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<GpaDeviceGetClockInfoAMD>::type getGpaClockInfoAMD() const;
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
       //=== VK_AMDX_shader_enqueue ===
 
@@ -5197,7 +5297,7 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
       // wrapper function for command vkGetAccelerationStructureMemoryRequirementsNV, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
-      VULKAN_HPP_NODISCARD MemoryRequirements2KHR
+      VULKAN_HPP_NODISCARD MemoryRequirements2
         getAccelerationStructureMemoryRequirementsNV( AccelerationStructureMemoryRequirementsInfoNV const & info ) const VULKAN_HPP_NOEXCEPT;
 
       // wrapper function for command vkGetAccelerationStructureMemoryRequirementsNV, see
@@ -5550,7 +5650,7 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       //=== VK_EXT_pipeline_properties ===
 
       // wrapper function for command vkGetPipelinePropertiesEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPipelinePropertiesEXT.html
-      VULKAN_HPP_NODISCARD typename ResultValueType<BaseOutStructure>::type getPipelinePropertiesEXT( PipelineInfoEXT const & pipelineInfo ) const;
+      VULKAN_HPP_NODISCARD typename ResultValueType<BaseOutStructure>::type getPipelinePropertiesEXT( PipelineInfoKHR const & pipelineInfo ) const;
 
       //=== VK_EXT_opacity_micromap ===
 
@@ -5932,6 +6032,15 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       VULKAN_HPP_NODISCARD typename ResultValueType<IndirectExecutionSetEXT>::type
         createIndirectExecutionSetEXT( IndirectExecutionSetCreateInfoEXT const & createInfo,
                                        Optional<AllocationCallbacks const>       allocator = nullptr ) const VULKAN_HPP_NOEXCEPT_WHEN_NO_EXCEPTIONS;
+
+      //=== VK_KHR_device_fault ===
+
+      // wrapper function for command vkGetDeviceFaultReportsKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html
+      VULKAN_HPP_NODISCARD ResultValue<std::vector<DeviceFaultInfoKHR>> getFaultReportsKHR( uint64_t timeout ) const;
+
+      // wrapper function for command vkGetDeviceFaultDebugInfoKHR, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultDebugInfoKHR.html
+      VULKAN_HPP_NODISCARD Result getFaultDebugInfoKHR( DeviceFaultDebugInfoKHR * pDebugInfo ) const VULKAN_HPP_NOEXCEPT;
 
 #  if defined( VK_USE_PLATFORM_METAL_EXT )
       //=== VK_EXT_external_memory_metal ===
@@ -7050,7 +7159,7 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       void setDepthBias( float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor ) const VULKAN_HPP_NOEXCEPT;
 
       // wrapper function for command vkCmdSetBlendConstants, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html
-      void setBlendConstants( float const blendConstants[4] ) const VULKAN_HPP_NOEXCEPT;
+      void setBlendConstants( std::array<float, 4> const & blendConstants ) const VULKAN_HPP_NOEXCEPT;
 
       // wrapper function for command vkCmdSetDepthBounds, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBounds.html
       void setDepthBounds( float minDepthBounds, float maxDepthBounds ) const VULKAN_HPP_NOEXCEPT;
@@ -7465,6 +7574,25 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdInsertDebugUtilsLabelEXT.html
       void insertDebugUtilsLabelEXT( DebugUtilsLabelEXT const & labelInfo ) const VULKAN_HPP_NOEXCEPT;
 
+      //=== VK_AMD_gpa_interface ===
+
+      // wrapper function for command vkCmdBeginGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSessionAMD.html
+      typename ResultValueType<void>::type beginGpaSessionAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const;
+
+      // wrapper function for command vkCmdEndGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSessionAMD.html
+      typename ResultValueType<void>::type endGpaSessionAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const;
+
+      // wrapper function for command vkCmdBeginGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSampleAMD.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<uint32_t>::type beginGpaSampleAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession,
+                                                                                       GpaSampleBeginInfoAMD const &       gpaSampleBeginInfo ) const;
+
+      // wrapper function for command vkCmdEndGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSampleAMD.html
+      void endGpaSampleAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession, uint32_t sampleID ) const VULKAN_HPP_NOEXCEPT;
+
+      // wrapper function for command vkCmdCopyGpaSessionResultsAMD, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyGpaSessionResultsAMD.html
+      void copyGpaSessionResultsAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const VULKAN_HPP_NOEXCEPT;
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
       //=== VK_AMDX_shader_enqueue ===
 
@@ -7699,7 +7827,8 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
       // wrapper function for command vkCmdSetFragmentShadingRateKHR, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateKHR.html
-      void setFragmentShadingRateKHR( Extent2D const & fragmentSize, FragmentShadingRateCombinerOpKHR const combinerOps[2] ) const VULKAN_HPP_NOEXCEPT;
+      void setFragmentShadingRateKHR( Extent2D const &                                        fragmentSize,
+                                      std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps ) const VULKAN_HPP_NOEXCEPT;
 
       //=== VK_KHR_dynamic_rendering_local_read ===
 
@@ -7954,7 +8083,8 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
       // wrapper function for command vkCmdSetFragmentShadingRateEnumNV, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateEnumNV.html
-      void setFragmentShadingRateEnumNV( FragmentShadingRateNV shadingRate, FragmentShadingRateCombinerOpKHR const combinerOps[2] ) const VULKAN_HPP_NOEXCEPT;
+      void setFragmentShadingRateEnumNV( FragmentShadingRateNV                                   shadingRate,
+                                         std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps ) const VULKAN_HPP_NOEXCEPT;
 
       //=== VK_EXT_mesh_shader ===
 
@@ -8085,6 +8215,12 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       // wrapper function for command vkCmdDrawClusterIndirectHUAWEI, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawClusterIndirectHUAWEI.html
       void drawClusterIndirectHUAWEI( VULKAN_HPP_NAMESPACE::Buffer buffer, DeviceSize offset ) const VULKAN_HPP_NOEXCEPT;
+
+      //=== VK_ARM_scheduling_controls ===
+
+      // wrapper function for command vkCmdSetDispatchParametersARM, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDispatchParametersARM.html
+      void setDispatchParametersARM( DispatchParametersARM const & dispatchParameters ) const VULKAN_HPP_NOEXCEPT;
 
       //=== VK_NV_copy_memory_indirect ===
 
@@ -8389,6 +8525,12 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       // wrapper function for command vkCmdSetComputeOccupancyPriorityNV, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetComputeOccupancyPriorityNV.html
       void setComputeOccupancyPriorityNV( ComputeOccupancyPriorityParametersNV const & parameters ) const VULKAN_HPP_NOEXCEPT;
+
+      //=== VK_EXT_primitive_restart_index ===
+
+      // wrapper function for command vkCmdSetPrimitiveRestartIndexEXT, see
+      // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartIndexEXT.html
+      void setPrimitiveRestartIndexEXT( uint32_t primitiveRestartIndex VULKAN_HPP_DEFAULT_ASSIGNMENT( {} ) ) const VULKAN_HPP_NOEXCEPT;
 
     private:
       VULKAN_HPP_NAMESPACE::Device        m_device        = {};
@@ -11038,6 +11180,144 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       static VULKAN_HPP_CONST_OR_CONSTEXPR bool value = true;
     };
 
+    // wrapper class for handle VkGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkGpaSessionAMD.html
+    class GpaSessionAMD
+    {
+    public:
+      using CType   = VkGpaSessionAMD;
+      using CppType = VULKAN_HPP_NAMESPACE::GpaSessionAMD;
+
+      static VULKAN_HPP_CONST_OR_CONSTEXPR ObjectType               objectType            = ObjectType::eGpaSessionAMD;
+      static VULKAN_HPP_CONST_OR_CONSTEXPR DebugReportObjectTypeEXT debugReportObjectType = DebugReportObjectTypeEXT::eUnknown;
+
+    public:
+#  if !defined( VULKAN_HPP_NO_EXCEPTIONS )
+      GpaSessionAMD( Device const & device, GpaSessionCreateInfoAMD const & createInfo, Optional<AllocationCallbacks const> allocator = nullptr )
+      {
+        *this = device.createGpaSessionAMD( createInfo, allocator );
+      }
+#  endif
+
+      GpaSessionAMD( Device const & device, VkGpaSessionAMD gpaSession, Optional<AllocationCallbacks const> allocator = nullptr )
+        : m_device( device )
+        , m_gpaSessionAMD( gpaSession )
+        , m_allocator( static_cast<const AllocationCallbacks *>( allocator ) )
+        , m_dispatcher( device.getDispatcher() )
+      {
+      }
+
+      GpaSessionAMD( std::nullptr_t ) {}
+
+      ~GpaSessionAMD()
+      {
+        clear();
+      }
+
+      GpaSessionAMD()                        = delete;
+      GpaSessionAMD( GpaSessionAMD const & ) = delete;
+
+      GpaSessionAMD( GpaSessionAMD && rhs ) VULKAN_HPP_NOEXCEPT
+        : m_device( exchange( rhs.m_device, {} ) )
+        , m_gpaSessionAMD( exchange( rhs.m_gpaSessionAMD, {} ) )
+        , m_allocator( exchange( rhs.m_allocator, {} ) )
+        , m_dispatcher( exchange( rhs.m_dispatcher, nullptr ) )
+      {
+      }
+
+      GpaSessionAMD & operator=( GpaSessionAMD const & ) = delete;
+
+      GpaSessionAMD & operator=( GpaSessionAMD && rhs ) VULKAN_HPP_NOEXCEPT
+      {
+        if ( this != &rhs )
+        {
+          std::swap( m_device, rhs.m_device );
+          std::swap( m_gpaSessionAMD, rhs.m_gpaSessionAMD );
+          std::swap( m_allocator, rhs.m_allocator );
+          std::swap( m_dispatcher, rhs.m_dispatcher );
+        }
+        return *this;
+      }
+
+      VULKAN_HPP_NAMESPACE::GpaSessionAMD const & operator*() const & VULKAN_HPP_NOEXCEPT
+      {
+        return m_gpaSessionAMD;
+      }
+
+      VULKAN_HPP_NAMESPACE::GpaSessionAMD const && operator*() const && VULKAN_HPP_NOEXCEPT
+      {
+        return std::move( m_gpaSessionAMD );
+      }
+
+      operator VULKAN_HPP_NAMESPACE::GpaSessionAMD() const VULKAN_HPP_NOEXCEPT
+      {
+        return m_gpaSessionAMD;
+      }
+
+      void clear() VULKAN_HPP_NOEXCEPT
+      {
+        if ( m_gpaSessionAMD )
+        {
+          getDispatcher()->vkDestroyGpaSessionAMD( static_cast<VkDevice>( m_device ),
+                                                   static_cast<VkGpaSessionAMD>( m_gpaSessionAMD ),
+                                                   reinterpret_cast<VkAllocationCallbacks const *>( m_allocator ) );
+        }
+        m_device        = nullptr;
+        m_gpaSessionAMD = nullptr;
+        m_allocator     = nullptr;
+        m_dispatcher    = nullptr;
+      }
+
+      VULKAN_HPP_NAMESPACE::GpaSessionAMD release()
+      {
+        m_device     = nullptr;
+        m_allocator  = nullptr;
+        m_dispatcher = nullptr;
+        return exchange( m_gpaSessionAMD, nullptr );
+      }
+
+      VULKAN_HPP_NAMESPACE::Device getDevice() const
+      {
+        return m_device;
+      }
+
+      detail::DeviceDispatcher const * getDispatcher() const
+      {
+        VULKAN_HPP_ASSERT( m_dispatcher->getVkHeaderVersion() == VK_HEADER_VERSION );
+        return m_dispatcher;
+      }
+
+      void swap( GpaSessionAMD & rhs ) VULKAN_HPP_NOEXCEPT
+      {
+        std::swap( m_device, rhs.m_device );
+        std::swap( m_gpaSessionAMD, rhs.m_gpaSessionAMD );
+        std::swap( m_allocator, rhs.m_allocator );
+        std::swap( m_dispatcher, rhs.m_dispatcher );
+      }
+
+      //=== VK_AMD_gpa_interface ===
+
+      // wrapper function for command vkGetGpaSessionStatusAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionStatusAMD.html
+      typename ResultValueType<void>::type getStatus() const;
+
+      // wrapper function for command vkGetGpaSessionResultsAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html
+      VULKAN_HPP_NODISCARD typename ResultValueType<std::vector<uint8_t>>::type getResults( uint32_t sampleID ) const;
+
+      // wrapper function for command vkResetGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetGpaSessionAMD.html
+      typename ResultValueType<void>::type reset() const;
+
+    private:
+      VULKAN_HPP_NAMESPACE::Device        m_device        = {};
+      VULKAN_HPP_NAMESPACE::GpaSessionAMD m_gpaSessionAMD = {};
+      AllocationCallbacks const *         m_allocator     = {};
+      detail::DeviceDispatcher const *    m_dispatcher    = nullptr;
+    };
+
+    template <>
+    struct isVulkanRAIIHandleType<GpaSessionAMD>
+    {
+      static VULKAN_HPP_CONST_OR_CONSTEXPR bool value = true;
+    };
+
     // wrapper class for handle VkImage, see https://registry.khronos.org/vulkan/specs/latest/man/html/VkImage.html
     class Image
     {
@@ -13352,6 +13632,11 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       // wrapper function for command vkQueueSetPerformanceConfigurationINTEL, see
       // https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerformanceConfigurationINTEL.html
       typename ResultValueType<void>::type setPerformanceConfigurationINTEL( VULKAN_HPP_NAMESPACE::PerformanceConfigurationINTEL configuration ) const;
+
+      //=== VK_QCOM_queue_perf_hint ===
+
+      // wrapper function for command vkQueueSetPerfHintQCOM, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerfHintQCOM.html
+      typename ResultValueType<void>::type setPerfHintQCOM( PerfHintInfoQCOM const & perfHintInfo ) const;
 
       //=== VK_KHR_synchronization2 ===
 
@@ -17189,11 +17474,11 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
     }
 
     // wrapper function for command vkCmdSetBlendConstants, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html
-    VULKAN_HPP_INLINE void CommandBuffer::setBlendConstants( float const blendConstants[4] ) const VULKAN_HPP_NOEXCEPT
+    VULKAN_HPP_INLINE void CommandBuffer::setBlendConstants( std::array<float, 4> const & blendConstants ) const VULKAN_HPP_NOEXCEPT
     {
       VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetBlendConstants && "Function <vkCmdSetBlendConstants> requires <VK_VERSION_1_0>" );
 
-      getDispatcher()->vkCmdSetBlendConstants( static_cast<VkCommandBuffer>( m_commandBuffer ), blendConstants );
+      getDispatcher()->vkCmdSetBlendConstants( static_cast<VkCommandBuffer>( m_commandBuffer ), blendConstants.data() );
     }
 
     // wrapper function for command vkCmdSetDepthBounds, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBounds.html
@@ -22073,6 +22358,160 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
     }
 #  endif /*VK_USE_PLATFORM_ANDROID_KHR*/
 
+    //=== VK_AMD_gpa_interface ===
+
+    // wrapper function for command vkCreateGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaSessionAMD>::type
+                         Device::createGpaSessionAMD( GpaSessionCreateInfoAMD const &     createInfo,
+                                   Optional<AllocationCallbacks const> allocator ) const VULKAN_HPP_NOEXCEPT_WHEN_NO_EXCEPTIONS
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCreateGpaSessionAMD && "Function <vkCreateGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+
+      VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession;
+      Result                              result = static_cast<Result>( getDispatcher()->vkCreateGpaSessionAMD( static_cast<VkDevice>( m_device ),
+                                                                                   reinterpret_cast<VkGpaSessionCreateInfoAMD const *>( &createInfo ),
+                                                                                   reinterpret_cast<VkAllocationCallbacks const *>( allocator.get() ),
+                                                                                   reinterpret_cast<VkGpaSessionAMD *>( &gpaSession ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Device::createGpaSessionAMD" );
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result,
+                                                                  GpaSessionAMD( *this, *reinterpret_cast<VkGpaSessionAMD *>( &gpaSession ), allocator ) );
+    }
+
+    // wrapper function for command vkSetGpaDeviceClockModeAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetGpaDeviceClockModeAMD.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaDeviceClockModeInfoAMD>::type Device::setGpaClockModeAMD() const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkSetGpaDeviceClockModeAMD && "Function <vkSetGpaDeviceClockModeAMD> requires <VK_AMD_gpa_interface>" );
+
+      GpaDeviceClockModeInfoAMD info;
+      Result                    result = static_cast<Result>(
+        getDispatcher()->vkSetGpaDeviceClockModeAMD( static_cast<VkDevice>( m_device ), reinterpret_cast<VkGpaDeviceClockModeInfoAMD *>( &info ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Device::setGpaClockModeAMD" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( info ) );
+    }
+
+    // wrapper function for command vkGetGpaDeviceClockInfoAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaDeviceClockInfoAMD.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaDeviceGetClockInfoAMD>::type Device::getGpaClockInfoAMD() const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetGpaDeviceClockInfoAMD && "Function <vkGetGpaDeviceClockInfoAMD> requires <VK_AMD_gpa_interface>" );
+
+      GpaDeviceGetClockInfoAMD info;
+      Result                   result = static_cast<Result>(
+        getDispatcher()->vkGetGpaDeviceClockInfoAMD( static_cast<VkDevice>( m_device ), reinterpret_cast<VkGpaDeviceGetClockInfoAMD *>( &info ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Device::getGpaClockInfoAMD" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( info ) );
+    }
+
+    // wrapper function for command vkCmdBeginGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSessionAMD.html
+    VULKAN_HPP_INLINE typename ResultValueType<void>::type CommandBuffer::beginGpaSessionAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdBeginGpaSessionAMD && "Function <vkCmdBeginGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+
+      Result result = static_cast<Result>(
+        getDispatcher()->vkCmdBeginGpaSessionAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::CommandBuffer::beginGpaSessionAMD" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result );
+    }
+
+    // wrapper function for command vkCmdEndGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSessionAMD.html
+    VULKAN_HPP_INLINE typename ResultValueType<void>::type CommandBuffer::endGpaSessionAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdEndGpaSessionAMD && "Function <vkCmdEndGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+
+      Result result = static_cast<Result>(
+        getDispatcher()->vkCmdEndGpaSessionAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::CommandBuffer::endGpaSessionAMD" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result );
+    }
+
+    // wrapper function for command vkCmdBeginGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSampleAMD.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<uint32_t>::type
+      CommandBuffer::beginGpaSampleAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession, GpaSampleBeginInfoAMD const & gpaSampleBeginInfo ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdBeginGpaSampleAMD && "Function <vkCmdBeginGpaSampleAMD> requires <VK_AMD_gpa_interface>" );
+
+      uint32_t sampleID;
+      Result   result = static_cast<Result>( getDispatcher()->vkCmdBeginGpaSampleAMD( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                                                                    static_cast<VkGpaSessionAMD>( gpaSession ),
+                                                                                    reinterpret_cast<VkGpaSampleBeginInfoAMD const *>( &gpaSampleBeginInfo ),
+                                                                                    &sampleID ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::CommandBuffer::beginGpaSampleAMD" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( sampleID ) );
+    }
+
+    // wrapper function for command vkCmdEndGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSampleAMD.html
+    VULKAN_HPP_INLINE void CommandBuffer::endGpaSampleAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession, uint32_t sampleID ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdEndGpaSampleAMD && "Function <vkCmdEndGpaSampleAMD> requires <VK_AMD_gpa_interface>" );
+
+      getDispatcher()->vkCmdEndGpaSampleAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ), sampleID );
+    }
+
+    // wrapper function for command vkGetGpaSessionStatusAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionStatusAMD.html
+    VULKAN_HPP_INLINE typename ResultValueType<void>::type GpaSessionAMD::getStatus() const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetGpaSessionStatusAMD && "Function <vkGetGpaSessionStatusAMD> requires <VK_AMD_gpa_interface>" );
+
+      Result result =
+        static_cast<Result>( getDispatcher()->vkGetGpaSessionStatusAMD( static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( m_gpaSessionAMD ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::GpaSessionAMD::getStatus" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result );
+    }
+
+    // wrapper function for command vkGetGpaSessionResultsAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<std::vector<uint8_t>>::type GpaSessionAMD::getResults( uint32_t sampleID ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetGpaSessionResultsAMD && "Function <vkGetGpaSessionResultsAMD> requires <VK_AMD_gpa_interface>" );
+
+      std::vector<uint8_t> data;
+      size_t               sizeInBytes;
+      Result               result = static_cast<Result>( getDispatcher()->vkGetGpaSessionResultsAMD(
+        static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( m_gpaSessionAMD ), sampleID, &sizeInBytes, nullptr ) );
+      if ( result == Result::eSuccess )
+      {
+        data.resize( sizeInBytes );
+        result = static_cast<Result>( getDispatcher()->vkGetGpaSessionResultsAMD( static_cast<VkDevice>( m_device ),
+                                                                                  static_cast<VkGpaSessionAMD>( m_gpaSessionAMD ),
+                                                                                  sampleID,
+                                                                                  &sizeInBytes,
+                                                                                  reinterpret_cast<void *>( data.data() ) ) );
+      }
+
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::GpaSessionAMD::getResults" );
+      VULKAN_HPP_ASSERT( sizeInBytes <= data.size() );
+      if ( sizeInBytes < data.size() )
+      {
+        data.resize( sizeInBytes );
+      }
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( data ) );
+    }
+
+    // wrapper function for command vkResetGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetGpaSessionAMD.html
+    VULKAN_HPP_INLINE typename ResultValueType<void>::type GpaSessionAMD::reset() const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkResetGpaSessionAMD && "Function <vkResetGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+
+      Result result =
+        static_cast<Result>( getDispatcher()->vkResetGpaSessionAMD( static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( m_gpaSessionAMD ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::GpaSessionAMD::reset" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result );
+    }
+
+    // wrapper function for command vkCmdCopyGpaSessionResultsAMD, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyGpaSessionResultsAMD.html
+    VULKAN_HPP_INLINE void CommandBuffer::copyGpaSessionResultsAMD( VULKAN_HPP_NAMESPACE::GpaSessionAMD gpaSession ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdCopyGpaSessionResultsAMD && "Function <vkCmdCopyGpaSessionResultsAMD> requires <VK_AMD_gpa_interface>" );
+
+      getDispatcher()->vkCmdCopyGpaSessionResultsAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) );
+    }
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
     //=== VK_AMDX_shader_enqueue ===
 
@@ -23284,16 +23723,16 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     // wrapper function for command vkGetAccelerationStructureMemoryRequirementsNV, see
     // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
-    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE MemoryRequirements2KHR
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE MemoryRequirements2
       Device::getAccelerationStructureMemoryRequirementsNV( AccelerationStructureMemoryRequirementsInfoNV const & info ) const VULKAN_HPP_NOEXCEPT
     {
       VULKAN_HPP_ASSERT( getDispatcher()->vkGetAccelerationStructureMemoryRequirementsNV &&
                          "Function <vkGetAccelerationStructureMemoryRequirementsNV> requires <VK_NV_ray_tracing>" );
 
-      MemoryRequirements2KHR memoryRequirements;
+      MemoryRequirements2 memoryRequirements;
       getDispatcher()->vkGetAccelerationStructureMemoryRequirementsNV( static_cast<VkDevice>( m_device ),
                                                                        reinterpret_cast<VkAccelerationStructureMemoryRequirementsInfoNV const *>( &info ),
-                                                                       reinterpret_cast<VkMemoryRequirements2KHR *>( &memoryRequirements ) );
+                                                                       reinterpret_cast<VkMemoryRequirements2 *>( &memoryRequirements ) );
 
       return memoryRequirements;
     }
@@ -23308,10 +23747,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
                          "Function <vkGetAccelerationStructureMemoryRequirementsNV> requires <VK_NV_ray_tracing>" );
 
       StructureChain<X, Y, Z...> structureChain;
-      MemoryRequirements2KHR &   memoryRequirements = structureChain.template get<MemoryRequirements2KHR>();
+      MemoryRequirements2 &      memoryRequirements = structureChain.template get<MemoryRequirements2>();
       getDispatcher()->vkGetAccelerationStructureMemoryRequirementsNV( static_cast<VkDevice>( m_device ),
                                                                        reinterpret_cast<VkAccelerationStructureMemoryRequirementsInfoNV const *>( &info ),
-                                                                       reinterpret_cast<VkMemoryRequirements2KHR *>( &memoryRequirements ) );
+                                                                       reinterpret_cast<VkMemoryRequirements2 *>( &memoryRequirements ) );
 
       return structureChain;
     }
@@ -24234,15 +24673,16 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     // wrapper function for command vkCmdSetFragmentShadingRateKHR, see
     // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateKHR.html
-    VULKAN_HPP_INLINE void CommandBuffer::setFragmentShadingRateKHR( Extent2D const &                       fragmentSize,
-                                                                     FragmentShadingRateCombinerOpKHR const combinerOps[2] ) const VULKAN_HPP_NOEXCEPT
+    VULKAN_HPP_INLINE void
+      CommandBuffer::setFragmentShadingRateKHR( Extent2D const &                                        fragmentSize,
+                                                std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps ) const VULKAN_HPP_NOEXCEPT
     {
       VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetFragmentShadingRateKHR &&
                          "Function <vkCmdSetFragmentShadingRateKHR> requires <VK_KHR_fragment_shading_rate>" );
 
       getDispatcher()->vkCmdSetFragmentShadingRateKHR( static_cast<VkCommandBuffer>( m_commandBuffer ),
                                                        reinterpret_cast<VkExtent2D const *>( &fragmentSize ),
-                                                       reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps ) );
+                                                       reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps.data() ) );
     }
 
     //=== VK_KHR_dynamic_rendering_local_read ===
@@ -25318,6 +25758,20 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       getDispatcher()->vkCmdEncodeVideoKHR( static_cast<VkCommandBuffer>( m_commandBuffer ), reinterpret_cast<VkVideoEncodeInfoKHR const *>( &encodeInfo ) );
     }
 
+    //=== VK_QCOM_queue_perf_hint ===
+
+    // wrapper function for command vkQueueSetPerfHintQCOM, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerfHintQCOM.html
+    VULKAN_HPP_INLINE typename ResultValueType<void>::type Queue::setPerfHintQCOM( PerfHintInfoQCOM const & perfHintInfo ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkQueueSetPerfHintQCOM && "Function <vkQueueSetPerfHintQCOM> requires <VK_QCOM_queue_perf_hint>" );
+
+      Result result = static_cast<Result>(
+        getDispatcher()->vkQueueSetPerfHintQCOM( static_cast<VkQueue>( m_queue ), reinterpret_cast<VkPerfHintInfoQCOM const *>( &perfHintInfo ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Queue::setPerfHintQCOM" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result );
+    }
+
 #  if defined( VK_ENABLE_BETA_EXTENSIONS )
     //=== VK_NV_cuda_kernel_launch ===
 
@@ -25999,15 +26453,16 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     // wrapper function for command vkCmdSetFragmentShadingRateEnumNV, see
     // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateEnumNV.html
-    VULKAN_HPP_INLINE void CommandBuffer::setFragmentShadingRateEnumNV( FragmentShadingRateNV                  shadingRate,
-                                                                        FragmentShadingRateCombinerOpKHR const combinerOps[2] ) const VULKAN_HPP_NOEXCEPT
+    VULKAN_HPP_INLINE void
+      CommandBuffer::setFragmentShadingRateEnumNV( FragmentShadingRateNV                                   shadingRate,
+                                                   std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps ) const VULKAN_HPP_NOEXCEPT
     {
       VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetFragmentShadingRateEnumNV &&
                          "Function <vkCmdSetFragmentShadingRateEnumNV> requires <VK_NV_fragment_shading_rate_enums>" );
 
       getDispatcher()->vkCmdSetFragmentShadingRateEnumNV( static_cast<VkCommandBuffer>( m_commandBuffer ),
                                                           static_cast<VkFragmentShadingRateNV>( shadingRate ),
-                                                          reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps ) );
+                                                          reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps.data() ) );
     }
 
     //=== VK_EXT_mesh_shader ===
@@ -26406,13 +26861,13 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     // wrapper function for command vkGetPipelinePropertiesEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPipelinePropertiesEXT.html
     VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<BaseOutStructure>::type
-                         Device::getPipelinePropertiesEXT( PipelineInfoEXT const & pipelineInfo ) const
+                         Device::getPipelinePropertiesEXT( PipelineInfoKHR const & pipelineInfo ) const
     {
       VULKAN_HPP_ASSERT( getDispatcher()->vkGetPipelinePropertiesEXT && "Function <vkGetPipelinePropertiesEXT> requires <VK_EXT_pipeline_properties>" );
 
       BaseOutStructure pipelineProperties;
       Result           result = static_cast<Result>( getDispatcher()->vkGetPipelinePropertiesEXT( static_cast<VkDevice>( m_device ),
-                                                                                        reinterpret_cast<VkPipelineInfoEXT const *>( &pipelineInfo ),
+                                                                                        reinterpret_cast<VkPipelineInfoKHR const *>( &pipelineInfo ),
                                                                                         reinterpret_cast<VkBaseOutStructure *>( &pipelineProperties ) ) );
       VULKAN_HPP_NAMESPACE::detail::resultCheck( result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Device::getPipelinePropertiesEXT" );
 
@@ -26918,6 +27373,18 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
         sparseMemoryRequirements.resize( sparseMemoryRequirementCount );
       }
       return sparseMemoryRequirements;
+    }
+
+    //=== VK_ARM_scheduling_controls ===
+
+    // wrapper function for command vkCmdSetDispatchParametersARM, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDispatchParametersARM.html
+    VULKAN_HPP_INLINE void CommandBuffer::setDispatchParametersARM( DispatchParametersARM const & dispatchParameters ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetDispatchParametersARM && "Function <vkCmdSetDispatchParametersARM> requires <VK_ARM_scheduling_controls>" );
+
+      getDispatcher()->vkCmdSetDispatchParametersARM( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                                      reinterpret_cast<VkDispatchParametersARM const *>( &dispatchParameters ) );
     }
 
     //=== VK_VALVE_descriptor_set_host_mapping ===
@@ -28611,6 +29078,30 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       return queueFamilyDataGraphProcessingEngineProperties;
     }
 
+    //=== VK_ARM_data_graph_instruction_set_tosa ===
+
+    // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<BaseOutStructure>::type
+                         PhysicalDevice::getQueueFamilyDataGraphEngineOperationPropertiesARM( uint32_t                                  queueFamilyIndex,
+                                                                           QueueFamilyDataGraphPropertiesARM const & queueFamilyDataGraphProperties ) const
+    {
+      VULKAN_HPP_ASSERT(
+        getDispatcher()->vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM &&
+        "Function <vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM> requires <VK_ARM_data_graph_instruction_set_tosa> or <VK_ARM_data_graph_optical_flow>" );
+
+      BaseOutStructure properties;
+      Result           result = static_cast<Result>( getDispatcher()->vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM(
+        static_cast<VkPhysicalDevice>( m_physicalDevice ),
+        queueFamilyIndex,
+        reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+        reinterpret_cast<VkBaseOutStructure *>( &properties ) ) );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result,
+                                                 VULKAN_HPP_RAII_NAMESPACE_STRING "::PhysicalDevice::getQueueFamilyDataGraphEngineOperationPropertiesARM" );
+
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( properties ) );
+    }
+
     //=== VK_EXT_attachment_feedback_loop_dynamic_state ===
 
     // wrapper function for command vkCmdSetAttachmentFeedbackLoopEnableEXT, see
@@ -29108,6 +29599,44 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
                                                               reinterpret_cast<VkWriteIndirectExecutionSetShaderEXT const *>( executionSetWrites.data() ) );
     }
 
+    //=== VK_KHR_device_fault ===
+
+    // wrapper function for command vkGetDeviceFaultReportsKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE ResultValue<std::vector<DeviceFaultInfoKHR>> Device::getFaultReportsKHR( uint64_t timeout ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetDeviceFaultReportsKHR && "Function <vkGetDeviceFaultReportsKHR> requires <VK_KHR_device_fault>" );
+
+      std::vector<DeviceFaultInfoKHR> faultInfo;
+      uint32_t                        faultCounts;
+      Result                          result;
+      do
+      {
+        result = static_cast<Result>( getDispatcher()->vkGetDeviceFaultReportsKHR( static_cast<VkDevice>( m_device ), timeout, &faultCounts, nullptr ) );
+        if ( ( result == Result::eSuccess ) && faultCounts )
+        {
+          faultInfo.resize( faultCounts );
+          result = static_cast<Result>( getDispatcher()->vkGetDeviceFaultReportsKHR(
+            static_cast<VkDevice>( m_device ), timeout, &faultCounts, reinterpret_cast<VkDeviceFaultInfoKHR *>( faultInfo.data() ) ) );
+        }
+      } while ( result == Result::eIncomplete );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck(
+        result, VULKAN_HPP_RAII_NAMESPACE_STRING "::Device::getFaultReportsKHR", { Result::eSuccess, Result::eIncomplete, Result::eTimeout } );
+      VULKAN_HPP_ASSERT( faultCounts <= faultInfo.size() );
+      if ( faultCounts < faultInfo.size() )
+      {
+        faultInfo.resize( faultCounts );
+      }
+      return { result, faultInfo };
+    }
+
+    // wrapper function for command vkGetDeviceFaultDebugInfoKHR, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultDebugInfoKHR.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getFaultDebugInfoKHR( DeviceFaultDebugInfoKHR * pDebugInfo ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetDeviceFaultDebugInfoKHR && "Function <vkGetDeviceFaultDebugInfoKHR> requires <VK_KHR_device_fault>" );
+      return static_cast<Result>(
+        getDispatcher()->vkGetDeviceFaultDebugInfoKHR( static_cast<VkDevice>( m_device ), reinterpret_cast<VkDeviceFaultDebugInfoKHR *>( pDebugInfo ) ) );
+    }
 #  if defined( VK_USE_PLATFORM_OHOS )
     //=== VK_OHOS_surface ===
 
@@ -29383,6 +29912,52 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
                                               reinterpret_cast<VkRenderingEndInfoKHR const *>( renderingEndInfo.get() ) );
     }
 
+    //=== VK_ARM_data_graph_optical_flow ===
+
+    // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html
+    VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<std::vector<DataGraphOpticalFlowImageFormatPropertiesARM>>::type
+                         PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM( uint32_t                                       queueFamilyIndex,
+                                                                         QueueFamilyDataGraphPropertiesARM const &      queueFamilyDataGraphProperties,
+                                                                         DataGraphOpticalFlowImageFormatInfoARM const & opticalFlowImageFormatInfo ) const
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM &&
+                         "Function <vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM> requires <VK_ARM_data_graph_optical_flow>" );
+
+      std::vector<DataGraphOpticalFlowImageFormatPropertiesARM> imageFormatProperties;
+      uint32_t                                                  formatCount;
+      Result                                                    result;
+      do
+      {
+        result = static_cast<Result>( getDispatcher()->vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+          static_cast<VkPhysicalDevice>( m_physicalDevice ),
+          queueFamilyIndex,
+          reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+          reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+          &formatCount,
+          nullptr ) );
+        if ( ( result == Result::eSuccess ) && formatCount )
+        {
+          imageFormatProperties.resize( formatCount );
+          result = static_cast<Result>( getDispatcher()->vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+            static_cast<VkPhysicalDevice>( m_physicalDevice ),
+            queueFamilyIndex,
+            reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+            reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+            &formatCount,
+            reinterpret_cast<VkDataGraphOpticalFlowImageFormatPropertiesARM *>( imageFormatProperties.data() ) ) );
+        }
+      } while ( result == Result::eIncomplete );
+      VULKAN_HPP_NAMESPACE::detail::resultCheck( result,
+                                                 VULKAN_HPP_RAII_NAMESPACE_STRING "::PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM" );
+      VULKAN_HPP_ASSERT( formatCount <= imageFormatProperties.size() );
+      if ( formatCount < imageFormatProperties.size() )
+      {
+        imageFormatProperties.resize( formatCount );
+      }
+      return VULKAN_HPP_NAMESPACE::detail::createResultValueType( result, std::move( imageFormatProperties ) );
+    }
+
     //=== VK_NV_compute_occupancy_priority ===
 
     // wrapper function for command vkCmdSetComputeOccupancyPriorityNV, see
@@ -29430,6 +30005,18 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       return { result, device };
     }
 #  endif /*VK_USE_PLATFORM_UBM_SEC*/
+
+    //=== VK_EXT_primitive_restart_index ===
+
+    // wrapper function for command vkCmdSetPrimitiveRestartIndexEXT, see
+    // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartIndexEXT.html
+    VULKAN_HPP_INLINE void CommandBuffer::setPrimitiveRestartIndexEXT( uint32_t primitiveRestartIndex ) const VULKAN_HPP_NOEXCEPT
+    {
+      VULKAN_HPP_ASSERT( getDispatcher()->vkCmdSetPrimitiveRestartIndexEXT &&
+                         "Function <vkCmdSetPrimitiveRestartIndexEXT> requires <VK_EXT_primitive_restart_index>" );
+
+      getDispatcher()->vkCmdSetPrimitiveRestartIndexEXT( static_cast<VkCommandBuffer>( m_commandBuffer ), primitiveRestartIndex );
+    }
 
     //====================
     //=== RAII Helpers ===

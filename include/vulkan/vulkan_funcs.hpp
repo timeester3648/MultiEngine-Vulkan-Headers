@@ -1,5 +1,4 @@
 // Copyright 2015-2026 The Khronos Group Inc.
-//
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 //
 
@@ -5335,6 +5334,20 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
     d.vkCmdSetBlendConstants( static_cast<VkCommandBuffer>( m_commandBuffer ), blendConstants );
   }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdSetBlendConstants, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetBlendConstants.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetBlendConstants ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::setBlendConstants( std::array<float, 4> const & blendConstants, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdSetBlendConstants && "Function <vkCmdSetBlendConstants> requires <VK_VERSION_1_0>" );
+#  endif
+
+    d.vkCmdSetBlendConstants( m_commandBuffer, blendConstants.data() );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
   // wrapper function for command vkCmdSetDepthBounds, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDepthBounds.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetDepthBounds ), bool>::type>
@@ -16322,6 +16335,396 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 #  endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 #endif   /*VK_USE_PLATFORM_ANDROID_KHR*/
 
+  //=== VK_AMD_gpa_interface ===
+
+  // wrapper function for command vkCreateGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCreateGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::createGpaSessionAMD(
+    GpaSessionCreateInfoAMD const * pCreateInfo, AllocationCallbacks const * pAllocator, GpaSessionAMD * pGpaSession, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkCreateGpaSessionAMD( static_cast<VkDevice>( m_device ),
+                                                         reinterpret_cast<VkGpaSessionCreateInfoAMD const *>( pCreateInfo ),
+                                                         reinterpret_cast<VkAllocationCallbacks const *>( pAllocator ),
+                                                         reinterpret_cast<VkGpaSessionAMD *>( pGpaSession ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCreateGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCreateGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaSessionAMD>::type Device::createGpaSessionAMD(
+    GpaSessionCreateInfoAMD const & createInfo, Optional<AllocationCallbacks const> allocator, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCreateGpaSessionAMD && "Function <vkCreateGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    GpaSessionAMD gpaSession;
+    Result        result = static_cast<Result>( d.vkCreateGpaSessionAMD( m_device,
+                                                                  reinterpret_cast<VkGpaSessionCreateInfoAMD const *>( &createInfo ),
+                                                                  reinterpret_cast<VkAllocationCallbacks const *>( allocator.get() ),
+                                                                  reinterpret_cast<VkGpaSessionAMD *>( &gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::createGpaSessionAMD" );
+
+    return detail::createResultValueType( result, std::move( gpaSession ) );
+  }
+
+#  ifndef VULKAN_HPP_NO_SMART_HANDLE
+  // wrapper function for command vkCreateGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCreateGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCreateGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<UniqueHandle<GpaSessionAMD, Dispatch>>::type Device::createGpaSessionAMDUnique(
+    GpaSessionCreateInfoAMD const & createInfo, Optional<AllocationCallbacks const> allocator, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#    if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCreateGpaSessionAMD && "Function <vkCreateGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#    endif
+
+    GpaSessionAMD gpaSession;
+    Result        result = static_cast<Result>( d.vkCreateGpaSessionAMD( m_device,
+                                                                  reinterpret_cast<VkGpaSessionCreateInfoAMD const *>( &createInfo ),
+                                                                  reinterpret_cast<VkAllocationCallbacks const *>( allocator.get() ),
+                                                                  reinterpret_cast<VkGpaSessionAMD *>( &gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::createGpaSessionAMDUnique" );
+
+    return detail::createResultValueType( result,
+                                          UniqueHandle<GpaSessionAMD, Dispatch>( gpaSession, detail::ObjectDestroy<Device, Dispatch>( *this, allocator, d ) ) );
+  }
+#  endif /* VULKAN_HPP_NO_SMART_HANDLE */
+#endif   /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkDestroyGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkDestroyGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_INLINE void Device::destroyGpaSessionAMD( GpaSessionAMD gpaSession, AllocationCallbacks const * pAllocator, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkDestroyGpaSessionAMD(
+      static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( gpaSession ), reinterpret_cast<VkAllocationCallbacks const *>( pAllocator ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkDestroyGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkDestroyGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_INLINE void Device::destroyGpaSessionAMD( GpaSessionAMD gpaSession, Optional<AllocationCallbacks const> allocator, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkDestroyGpaSessionAMD && "Function <vkDestroyGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    d.vkDestroyGpaSessionAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), reinterpret_cast<VkAllocationCallbacks const *>( allocator.get() ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkDestroyGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkDestroyGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_INLINE void Device::destroy( GpaSessionAMD gpaSession, AllocationCallbacks const * pAllocator, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkDestroyGpaSessionAMD(
+      static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( gpaSession ), reinterpret_cast<VkAllocationCallbacks const *>( pAllocator ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkDestroyGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkDestroyGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkDestroyGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_INLINE void Device::destroy( GpaSessionAMD gpaSession, Optional<AllocationCallbacks const> allocator, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkDestroyGpaSessionAMD && "Function <vkDestroyGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    d.vkDestroyGpaSessionAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), reinterpret_cast<VkAllocationCallbacks const *>( allocator.get() ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkSetGpaDeviceClockModeAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetGpaDeviceClockModeAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkSetGpaDeviceClockModeAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::setGpaClockModeAMD( GpaDeviceClockModeInfoAMD * pInfo, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkSetGpaDeviceClockModeAMD( static_cast<VkDevice>( m_device ), reinterpret_cast<VkGpaDeviceClockModeInfoAMD *>( pInfo ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkSetGpaDeviceClockModeAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkSetGpaDeviceClockModeAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkSetGpaDeviceClockModeAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaDeviceClockModeInfoAMD>::type Device::setGpaClockModeAMD( Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkSetGpaDeviceClockModeAMD && "Function <vkSetGpaDeviceClockModeAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    GpaDeviceClockModeInfoAMD info;
+    Result result = static_cast<Result>( d.vkSetGpaDeviceClockModeAMD( m_device, reinterpret_cast<VkGpaDeviceClockModeInfoAMD *>( &info ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::setGpaClockModeAMD" );
+
+    return detail::createResultValueType( result, std::move( info ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkGetGpaDeviceClockInfoAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaDeviceClockInfoAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetGpaDeviceClockInfoAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getGpaClockInfoAMD( GpaDeviceGetClockInfoAMD * pInfo, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkGetGpaDeviceClockInfoAMD( static_cast<VkDevice>( m_device ), reinterpret_cast<VkGpaDeviceGetClockInfoAMD *>( pInfo ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetGpaDeviceClockInfoAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaDeviceClockInfoAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetGpaDeviceClockInfoAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<GpaDeviceGetClockInfoAMD>::type Device::getGpaClockInfoAMD( Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetGpaDeviceClockInfoAMD && "Function <vkGetGpaDeviceClockInfoAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    GpaDeviceGetClockInfoAMD info;
+    Result                   result = static_cast<Result>( d.vkGetGpaDeviceClockInfoAMD( m_device, reinterpret_cast<VkGpaDeviceGetClockInfoAMD *>( &info ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getGpaClockInfoAMD" );
+
+    return detail::createResultValueType( result, std::move( info ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+#ifdef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdBeginGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdBeginGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result CommandBuffer::beginGpaSessionAMD( GpaSessionAMD gpaSession, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkCmdBeginGpaSessionAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+  }
+#else
+  // wrapper function for command vkCmdBeginGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdBeginGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD_WHEN_NO_EXCEPTIONS VULKAN_HPP_INLINE typename ResultValueType<void>::type CommandBuffer::beginGpaSessionAMD( GpaSessionAMD    gpaSession,
+                                                                                                                                    Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdBeginGpaSessionAMD && "Function <vkCmdBeginGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    Result result = static_cast<Result>( d.vkCmdBeginGpaSessionAMD( m_commandBuffer, static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::CommandBuffer::beginGpaSessionAMD" );
+
+    return detail::createResultValueType( result );
+  }
+#endif /*VULKAN_HPP_DISABLE_ENHANCED_MODE*/
+
+#ifdef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdEndGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdEndGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result CommandBuffer::endGpaSessionAMD( GpaSessionAMD gpaSession, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkCmdEndGpaSessionAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+  }
+#else
+  // wrapper function for command vkCmdEndGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdEndGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD_WHEN_NO_EXCEPTIONS VULKAN_HPP_INLINE typename ResultValueType<void>::type CommandBuffer::endGpaSessionAMD( GpaSessionAMD    gpaSession,
+                                                                                                                                  Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdEndGpaSessionAMD && "Function <vkCmdEndGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    Result result = static_cast<Result>( d.vkCmdEndGpaSessionAMD( m_commandBuffer, static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::CommandBuffer::endGpaSessionAMD" );
+
+    return detail::createResultValueType( result );
+  }
+#endif /*VULKAN_HPP_DISABLE_ENHANCED_MODE*/
+
+  // wrapper function for command vkCmdBeginGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSampleAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdBeginGpaSampleAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result CommandBuffer::beginGpaSampleAMD(
+    GpaSessionAMD gpaSession, GpaSampleBeginInfoAMD const * pGpaSampleBeginInfo, uint32_t * pSampleID, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkCmdBeginGpaSampleAMD( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                                          static_cast<VkGpaSessionAMD>( gpaSession ),
+                                                          reinterpret_cast<VkGpaSampleBeginInfoAMD const *>( pGpaSampleBeginInfo ),
+                                                          pSampleID ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdBeginGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdBeginGpaSampleAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdBeginGpaSampleAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<uint32_t>::type CommandBuffer::beginGpaSampleAMD(
+    GpaSessionAMD gpaSession, GpaSampleBeginInfoAMD const & gpaSampleBeginInfo, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdBeginGpaSampleAMD && "Function <vkCmdBeginGpaSampleAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    uint32_t sampleID;
+    Result   result = static_cast<Result>( d.vkCmdBeginGpaSampleAMD(
+      m_commandBuffer, static_cast<VkGpaSessionAMD>( gpaSession ), reinterpret_cast<VkGpaSampleBeginInfoAMD const *>( &gpaSampleBeginInfo ), &sampleID ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::CommandBuffer::beginGpaSampleAMD" );
+
+    return detail::createResultValueType( result, std::move( sampleID ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkCmdEndGpaSampleAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdEndGpaSampleAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdEndGpaSampleAMD ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::endGpaSampleAMD( GpaSessionAMD gpaSession, uint32_t sampleID, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkCmdEndGpaSampleAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ), sampleID );
+  }
+
+#ifdef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetGpaSessionStatusAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionStatusAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetGpaSessionStatusAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getGpaSessionStatusAMD( GpaSessionAMD gpaSession, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkGetGpaSessionStatusAMD( static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+  }
+#else
+  // wrapper function for command vkGetGpaSessionStatusAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionStatusAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetGpaSessionStatusAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD_WHEN_NO_EXCEPTIONS VULKAN_HPP_INLINE typename ResultValueType<void>::type Device::getGpaSessionStatusAMD( GpaSessionAMD    gpaSession,
+                                                                                                                                 Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetGpaSessionStatusAMD && "Function <vkGetGpaSessionStatusAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    Result result = static_cast<Result>( d.vkGetGpaSessionStatusAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getGpaSessionStatusAMD" );
+
+    return detail::createResultValueType( result );
+  }
+#endif /*VULKAN_HPP_DISABLE_ENHANCED_MODE*/
+
+  // wrapper function for command vkGetGpaSessionResultsAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetGpaSessionResultsAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getGpaSessionResultsAMD(
+    GpaSessionAMD gpaSession, uint32_t sampleID, size_t * pSizeInBytes, void * pData, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>(
+      d.vkGetGpaSessionResultsAMD( static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( gpaSession ), sampleID, pSizeInBytes, pData ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetGpaSessionResultsAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html
+  template <typename Uint8_tAllocator,
+            typename Dispatch,
+            typename std::enable_if<std::is_same<typename Uint8_tAllocator::value_type, uint8_t>::value, int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetGpaSessionResultsAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<std::vector<uint8_t, Uint8_tAllocator>>::type Device::getGpaSessionResultsAMD(
+    GpaSessionAMD gpaSession, uint32_t sampleID, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetGpaSessionResultsAMD && "Function <vkGetGpaSessionResultsAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    std::vector<uint8_t, Uint8_tAllocator> data;
+    size_t                                 sizeInBytes;
+    Result result = static_cast<Result>( d.vkGetGpaSessionResultsAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), sampleID, &sizeInBytes, nullptr ) );
+    if ( result == Result::eSuccess )
+    {
+      data.resize( sizeInBytes );
+      result = static_cast<Result>(
+        d.vkGetGpaSessionResultsAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), sampleID, &sizeInBytes, reinterpret_cast<void *>( data.data() ) ) );
+    }
+
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getGpaSessionResultsAMD" );
+    VULKAN_HPP_ASSERT( sizeInBytes <= data.size() );
+    if ( sizeInBytes < data.size() )
+    {
+      data.resize( sizeInBytes );
+    }
+    return detail::createResultValueType( result, std::move( data ) );
+  }
+
+  // wrapper function for command vkGetGpaSessionResultsAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetGpaSessionResultsAMD.html
+  template <typename Uint8_tAllocator,
+            typename Dispatch,
+            typename std::enable_if<std::is_same<typename Uint8_tAllocator::value_type, uint8_t>::value, int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetGpaSessionResultsAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<std::vector<uint8_t, Uint8_tAllocator>>::type Device::getGpaSessionResultsAMD(
+    GpaSessionAMD gpaSession, uint32_t sampleID, Uint8_tAllocator const & uint8_tAllocator, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetGpaSessionResultsAMD && "Function <vkGetGpaSessionResultsAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    std::vector<uint8_t, Uint8_tAllocator> data( uint8_tAllocator );
+    size_t                                 sizeInBytes;
+    Result result = static_cast<Result>( d.vkGetGpaSessionResultsAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), sampleID, &sizeInBytes, nullptr ) );
+    if ( result == Result::eSuccess )
+    {
+      data.resize( sizeInBytes );
+      result = static_cast<Result>(
+        d.vkGetGpaSessionResultsAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ), sampleID, &sizeInBytes, reinterpret_cast<void *>( data.data() ) ) );
+    }
+
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getGpaSessionResultsAMD" );
+    VULKAN_HPP_ASSERT( sizeInBytes <= data.size() );
+    if ( sizeInBytes < data.size() )
+    {
+      data.resize( sizeInBytes );
+    }
+    return detail::createResultValueType( result, std::move( data ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+#ifdef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkResetGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkResetGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::resetGpaSessionAMD( GpaSessionAMD gpaSession, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkResetGpaSessionAMD( static_cast<VkDevice>( m_device ), static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+  }
+#else
+  // wrapper function for command vkResetGpaSessionAMD, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkResetGpaSessionAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkResetGpaSessionAMD ), bool>::type>
+  VULKAN_HPP_NODISCARD_WHEN_NO_EXCEPTIONS VULKAN_HPP_INLINE typename ResultValueType<void>::type Device::resetGpaSessionAMD( GpaSessionAMD    gpaSession,
+                                                                                                                             Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkResetGpaSessionAMD && "Function <vkResetGpaSessionAMD> requires <VK_AMD_gpa_interface>" );
+#  endif
+
+    Result result = static_cast<Result>( d.vkResetGpaSessionAMD( m_device, static_cast<VkGpaSessionAMD>( gpaSession ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::resetGpaSessionAMD" );
+
+    return detail::createResultValueType( result );
+  }
+#endif /*VULKAN_HPP_DISABLE_ENHANCED_MODE*/
+
+  // wrapper function for command vkCmdCopyGpaSessionResultsAMD, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdCopyGpaSessionResultsAMD.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdCopyGpaSessionResultsAMD ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::copyGpaSessionResultsAMD( GpaSessionAMD gpaSession, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkCmdCopyGpaSessionResultsAMD( static_cast<VkCommandBuffer>( m_commandBuffer ), static_cast<VkGpaSessionAMD>( gpaSession ) );
+  }
+
 #if defined( VK_ENABLE_BETA_EXTENSIONS )
   //=== VK_AMDX_shader_enqueue ===
 
@@ -19006,19 +19409,19 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetAccelerationStructureMemoryRequirementsNV ), bool>::type>
   VULKAN_HPP_INLINE void Device::getAccelerationStructureMemoryRequirementsNV(
-    AccelerationStructureMemoryRequirementsInfoNV const * pInfo, MemoryRequirements2KHR * pMemoryRequirements, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+    AccelerationStructureMemoryRequirementsInfoNV const * pInfo, MemoryRequirements2 * pMemoryRequirements, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
   {
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
     d.vkGetAccelerationStructureMemoryRequirementsNV( static_cast<VkDevice>( m_device ),
                                                       reinterpret_cast<VkAccelerationStructureMemoryRequirementsInfoNV const *>( pInfo ),
-                                                      reinterpret_cast<VkMemoryRequirements2KHR *>( pMemoryRequirements ) );
+                                                      reinterpret_cast<VkMemoryRequirements2 *>( pMemoryRequirements ) );
   }
 
 #ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
   // wrapper function for command vkGetAccelerationStructureMemoryRequirementsNV, see
   // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetAccelerationStructureMemoryRequirementsNV.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetAccelerationStructureMemoryRequirementsNV ), bool>::type>
-  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE MemoryRequirements2KHR Device::getAccelerationStructureMemoryRequirementsNV(
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE MemoryRequirements2 Device::getAccelerationStructureMemoryRequirementsNV(
     AccelerationStructureMemoryRequirementsInfoNV const & info, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
   {
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
@@ -19027,10 +19430,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
                        "Function <vkGetAccelerationStructureMemoryRequirementsNV> requires <VK_NV_ray_tracing>" );
 #  endif
 
-    MemoryRequirements2KHR memoryRequirements;
+    MemoryRequirements2 memoryRequirements;
     d.vkGetAccelerationStructureMemoryRequirementsNV( m_device,
                                                       reinterpret_cast<VkAccelerationStructureMemoryRequirementsInfoNV const *>( &info ),
-                                                      reinterpret_cast<VkMemoryRequirements2KHR *>( &memoryRequirements ) );
+                                                      reinterpret_cast<VkMemoryRequirements2 *>( &memoryRequirements ) );
 
     return memoryRequirements;
   }
@@ -19052,10 +19455,10 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 #  endif
 
     StructureChain<X, Y, Z...> structureChain;
-    MemoryRequirements2KHR &   memoryRequirements = structureChain.template get<MemoryRequirements2KHR>();
+    MemoryRequirements2 &      memoryRequirements = structureChain.template get<MemoryRequirements2>();
     d.vkGetAccelerationStructureMemoryRequirementsNV( m_device,
                                                       reinterpret_cast<VkAccelerationStructureMemoryRequirementsInfoNV const *>( &info ),
-                                                      reinterpret_cast<VkMemoryRequirements2KHR *>( &memoryRequirements ) );
+                                                      reinterpret_cast<VkMemoryRequirements2 *>( &memoryRequirements ) );
 
     return structureChain;
   }
@@ -20943,15 +21346,16 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateKHR.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetFragmentShadingRateKHR ), bool>::type>
   VULKAN_HPP_INLINE void CommandBuffer::setFragmentShadingRateKHR(
-    Extent2D const & fragmentSize, FragmentShadingRateCombinerOpKHR const combinerOps[2], Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+    Extent2D const & fragmentSize, std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
   {
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
 #  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
     VULKAN_HPP_ASSERT( d.vkCmdSetFragmentShadingRateKHR && "Function <vkCmdSetFragmentShadingRateKHR> requires <VK_KHR_fragment_shading_rate>" );
 #  endif
 
-    d.vkCmdSetFragmentShadingRateKHR(
-      m_commandBuffer, reinterpret_cast<VkExtent2D const *>( &fragmentSize ), reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps ) );
+    d.vkCmdSetFragmentShadingRateKHR( m_commandBuffer,
+                                      reinterpret_cast<VkExtent2D const *>( &fragmentSize ),
+                                      reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps.data() ) );
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
@@ -23346,6 +23750,34 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
+  //=== VK_QCOM_queue_perf_hint ===
+
+  // wrapper function for command vkQueueSetPerfHintQCOM, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerfHintQCOM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkQueueSetPerfHintQCOM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Queue::setPerfHintQCOM( PerfHintInfoQCOM const * pPerfHintInfo, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkQueueSetPerfHintQCOM( static_cast<VkQueue>( m_queue ), reinterpret_cast<VkPerfHintInfoQCOM const *>( pPerfHintInfo ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkQueueSetPerfHintQCOM, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkQueueSetPerfHintQCOM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkQueueSetPerfHintQCOM ), bool>::type>
+  VULKAN_HPP_NODISCARD_WHEN_NO_EXCEPTIONS VULKAN_HPP_INLINE typename ResultValueType<void>::type Queue::setPerfHintQCOM( PerfHintInfoQCOM const & perfHintInfo,
+                                                                                                                         Dispatch const &         d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkQueueSetPerfHintQCOM && "Function <vkQueueSetPerfHintQCOM> requires <VK_QCOM_queue_perf_hint>" );
+#  endif
+
+    Result result = static_cast<Result>( d.vkQueueSetPerfHintQCOM( m_queue, reinterpret_cast<VkPerfHintInfoQCOM const *>( &perfHintInfo ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Queue::setPerfHintQCOM" );
+
+    return detail::createResultValueType( result );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
 #if defined( VK_ENABLE_BETA_EXTENSIONS )
   //=== VK_NV_cuda_kernel_launch ===
 
@@ -24911,6 +25343,24 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
                                          reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps ) );
   }
 
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdSetFragmentShadingRateEnumNV, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetFragmentShadingRateEnumNV.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetFragmentShadingRateEnumNV ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::setFragmentShadingRateEnumNV(
+    FragmentShadingRateNV shadingRate, std::array<FragmentShadingRateCombinerOpKHR, 2> const & combinerOps, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdSetFragmentShadingRateEnumNV && "Function <vkCmdSetFragmentShadingRateEnumNV> requires <VK_NV_fragment_shading_rate_enums>" );
+#  endif
+
+    d.vkCmdSetFragmentShadingRateEnumNV( m_commandBuffer,
+                                         static_cast<VkFragmentShadingRateNV>( shadingRate ),
+                                         reinterpret_cast<VkFragmentShadingRateCombinerOpKHR const *>( combinerOps.data() ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
   //=== VK_EXT_mesh_shader ===
 
   // wrapper function for command vkCmdDrawMeshTasksEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdDrawMeshTasksEXT.html
@@ -25772,11 +26222,11 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   // wrapper function for command vkGetPipelinePropertiesEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPipelinePropertiesEXT.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetPipelinePropertiesEXT ), bool>::type>
   VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getPipelinePropertiesEXT(
-    PipelineInfoEXT const * pPipelineInfo, BaseOutStructure * pPipelineProperties, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+    PipelineInfoKHR const * pPipelineInfo, BaseOutStructure * pPipelineProperties, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
   {
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
     return static_cast<Result>( d.vkGetPipelinePropertiesEXT( static_cast<VkDevice>( m_device ),
-                                                              reinterpret_cast<VkPipelineInfoEXT const *>( pPipelineInfo ),
+                                                              reinterpret_cast<VkPipelineInfoKHR const *>( pPipelineInfo ),
                                                               reinterpret_cast<VkBaseOutStructure *>( pPipelineProperties ) ) );
   }
 
@@ -25784,7 +26234,7 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   // wrapper function for command vkGetPipelinePropertiesEXT, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPipelinePropertiesEXT.html
   template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetPipelinePropertiesEXT ), bool>::type>
   VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<BaseOutStructure>::type Device::getPipelinePropertiesEXT(
-    PipelineInfoEXT const & pipelineInfo, Dispatch const & d ) const
+    PipelineInfoKHR const & pipelineInfo, Dispatch const & d ) const
   {
     VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
 #  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
@@ -25793,7 +26243,7 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
 
     BaseOutStructure pipelineProperties;
     Result           result = static_cast<Result>( d.vkGetPipelinePropertiesEXT(
-      m_device, reinterpret_cast<VkPipelineInfoEXT const *>( &pipelineInfo ), reinterpret_cast<VkBaseOutStructure *>( &pipelineProperties ) ) );
+      m_device, reinterpret_cast<VkPipelineInfoKHR const *>( &pipelineInfo ), reinterpret_cast<VkBaseOutStructure *>( &pipelineProperties ) ) );
     detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getPipelinePropertiesEXT" );
 
     return detail::createResultValueType( result, std::move( pipelineProperties ) );
@@ -26784,6 +27234,35 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
       sparseMemoryRequirements.resize( sparseMemoryRequirementCount );
     }
     return sparseMemoryRequirements;
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  //=== VK_ARM_scheduling_controls ===
+
+  // wrapper function for command vkCmdSetDispatchParametersARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDispatchParametersARM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetDispatchParametersARM ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::setDispatchParametersARM( DispatchParametersARM const * pDispatchParameters, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkCmdSetDispatchParametersARM( static_cast<VkCommandBuffer>( m_commandBuffer ),
+                                     reinterpret_cast<VkDispatchParametersARM const *>( pDispatchParameters ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkCmdSetDispatchParametersARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetDispatchParametersARM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetDispatchParametersARM ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::setDispatchParametersARM( DispatchParametersARM const & dispatchParameters, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkCmdSetDispatchParametersARM && "Function <vkCmdSetDispatchParametersARM> requires <VK_ARM_scheduling_controls>" );
+#  endif
+
+    d.vkCmdSetDispatchParametersARM( m_commandBuffer, reinterpret_cast<VkDispatchParametersARM const *>( &dispatchParameters ) );
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
@@ -30794,6 +31273,49 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
+  //=== VK_ARM_data_graph_instruction_set_tosa ===
+
+  // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result PhysicalDevice::getQueueFamilyDataGraphEngineOperationPropertiesARM(
+    uint32_t queueFamilyIndex, QueueFamilyDataGraphPropertiesARM const * pQueueFamilyDataGraphProperties, BaseOutStructure * pProperties, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM(
+      static_cast<VkPhysicalDevice>( m_physicalDevice ),
+      queueFamilyIndex,
+      reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( pQueueFamilyDataGraphProperties ),
+      reinterpret_cast<VkBaseOutStructure *>( pProperties ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE typename ResultValueType<BaseOutStructure>::type PhysicalDevice::getQueueFamilyDataGraphEngineOperationPropertiesARM(
+    uint32_t queueFamilyIndex, QueueFamilyDataGraphPropertiesARM const & queueFamilyDataGraphProperties, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT(
+      d.vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM &&
+      "Function <vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM> requires <VK_ARM_data_graph_instruction_set_tosa> or <VK_ARM_data_graph_optical_flow>" );
+#  endif
+
+    BaseOutStructure properties;
+    Result           result = static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphEngineOperationPropertiesARM(
+      m_physicalDevice,
+      queueFamilyIndex,
+      reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+      reinterpret_cast<VkBaseOutStructure *>( &properties ) ) );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::PhysicalDevice::getQueueFamilyDataGraphEngineOperationPropertiesARM" );
+
+    return detail::createResultValueType( result, std::move( properties ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
   //=== VK_EXT_attachment_feedback_loop_dynamic_state ===
 
   // wrapper function for command vkCmdSetAttachmentFeedbackLoopEnableEXT, see
@@ -32051,6 +32573,100 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
+  //=== VK_KHR_device_fault ===
+
+  // wrapper function for command vkGetDeviceFaultReportsKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetDeviceFaultReportsKHR ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getFaultReportsKHR(
+    uint64_t timeout, uint32_t * pFaultCounts, DeviceFaultInfoKHR * pFaultInfo, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>(
+      d.vkGetDeviceFaultReportsKHR( static_cast<VkDevice>( m_device ), timeout, pFaultCounts, reinterpret_cast<VkDeviceFaultInfoKHR *>( pFaultInfo ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetDeviceFaultReportsKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html
+  template <typename DeviceFaultInfoKHRAllocator,
+            typename Dispatch,
+            typename std::enable_if<std::is_same<typename DeviceFaultInfoKHRAllocator::value_type, DeviceFaultInfoKHR>::value, int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetDeviceFaultReportsKHR ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE ResultValue<std::vector<DeviceFaultInfoKHR, DeviceFaultInfoKHRAllocator>> Device::getFaultReportsKHR(
+    uint64_t timeout, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetDeviceFaultReportsKHR && "Function <vkGetDeviceFaultReportsKHR> requires <VK_KHR_device_fault>" );
+#  endif
+
+    std::vector<DeviceFaultInfoKHR, DeviceFaultInfoKHRAllocator> faultInfo;
+    uint32_t                                                     faultCounts;
+    Result                                                       result;
+    do
+    {
+      result = static_cast<Result>( d.vkGetDeviceFaultReportsKHR( m_device, timeout, &faultCounts, nullptr ) );
+      if ( ( result == Result::eSuccess ) && faultCounts )
+      {
+        faultInfo.resize( faultCounts );
+        result =
+          static_cast<Result>( d.vkGetDeviceFaultReportsKHR( m_device, timeout, &faultCounts, reinterpret_cast<VkDeviceFaultInfoKHR *>( faultInfo.data() ) ) );
+      }
+    } while ( result == Result::eIncomplete );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getFaultReportsKHR", { Result::eSuccess, Result::eIncomplete, Result::eTimeout } );
+    VULKAN_HPP_ASSERT( faultCounts <= faultInfo.size() );
+    if ( faultCounts < faultInfo.size() )
+    {
+      faultInfo.resize( faultCounts );
+    }
+    return { result, faultInfo };
+  }
+
+  // wrapper function for command vkGetDeviceFaultReportsKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultReportsKHR.html
+  template <typename DeviceFaultInfoKHRAllocator,
+            typename Dispatch,
+            typename std::enable_if<std::is_same<typename DeviceFaultInfoKHRAllocator::value_type, DeviceFaultInfoKHR>::value, int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetDeviceFaultReportsKHR ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE ResultValue<std::vector<DeviceFaultInfoKHR, DeviceFaultInfoKHRAllocator>> Device::getFaultReportsKHR(
+    uint64_t timeout, DeviceFaultInfoKHRAllocator const & deviceFaultInfoKHRAllocator, Dispatch const & d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetDeviceFaultReportsKHR && "Function <vkGetDeviceFaultReportsKHR> requires <VK_KHR_device_fault>" );
+#  endif
+
+    std::vector<DeviceFaultInfoKHR, DeviceFaultInfoKHRAllocator> faultInfo( deviceFaultInfoKHRAllocator );
+    uint32_t                                                     faultCounts;
+    Result                                                       result;
+    do
+    {
+      result = static_cast<Result>( d.vkGetDeviceFaultReportsKHR( m_device, timeout, &faultCounts, nullptr ) );
+      if ( ( result == Result::eSuccess ) && faultCounts )
+      {
+        faultInfo.resize( faultCounts );
+        result =
+          static_cast<Result>( d.vkGetDeviceFaultReportsKHR( m_device, timeout, &faultCounts, reinterpret_cast<VkDeviceFaultInfoKHR *>( faultInfo.data() ) ) );
+      }
+    } while ( result == Result::eIncomplete );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::Device::getFaultReportsKHR", { Result::eSuccess, Result::eIncomplete, Result::eTimeout } );
+    VULKAN_HPP_ASSERT( faultCounts <= faultInfo.size() );
+    if ( faultCounts < faultInfo.size() )
+    {
+      faultInfo.resize( faultCounts );
+    }
+    return { result, faultInfo };
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
+  // wrapper function for command vkGetDeviceFaultDebugInfoKHR, see https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetDeviceFaultDebugInfoKHR.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetDeviceFaultDebugInfoKHR ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result Device::getFaultDebugInfoKHR( DeviceFaultDebugInfoKHR * pDebugInfo, Dispatch const & d )
+    const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>(
+      d.vkGetDeviceFaultDebugInfoKHR( static_cast<VkDevice>( m_device ), reinterpret_cast<VkDeviceFaultDebugInfoKHR *>( pDebugInfo ) ) );
+  }
+
 #if defined( VK_USE_PLATFORM_OHOS )
   //=== VK_OHOS_surface ===
 
@@ -32756,6 +33372,142 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   }
 #endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 
+  //=== VK_ARM_data_graph_optical_flow ===
+
+  // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE Result PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+    uint32_t                                       queueFamilyIndex,
+    QueueFamilyDataGraphPropertiesARM const *      pQueueFamilyDataGraphProperties,
+    DataGraphOpticalFlowImageFormatInfoARM const * pOpticalFlowImageFormatInfo,
+    uint32_t *                                     pFormatCount,
+    DataGraphOpticalFlowImageFormatPropertiesARM * pImageFormatProperties,
+    Dispatch const &                               d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    return static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+      static_cast<VkPhysicalDevice>( m_physicalDevice ),
+      queueFamilyIndex,
+      reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( pQueueFamilyDataGraphProperties ),
+      reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( pOpticalFlowImageFormatInfo ),
+      pFormatCount,
+      reinterpret_cast<VkDataGraphOpticalFlowImageFormatPropertiesARM *>( pImageFormatProperties ) ) );
+  }
+
+#ifndef VULKAN_HPP_DISABLE_ENHANCED_MODE
+  // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html
+  template <typename DataGraphOpticalFlowImageFormatPropertiesARMAllocator,
+            typename Dispatch,
+            typename std::enable_if<
+              std::is_same<typename DataGraphOpticalFlowImageFormatPropertiesARMAllocator::value_type, DataGraphOpticalFlowImageFormatPropertiesARM>::value,
+              int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE
+    typename ResultValueType<std::vector<DataGraphOpticalFlowImageFormatPropertiesARM, DataGraphOpticalFlowImageFormatPropertiesARMAllocator>>::type
+    PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM( uint32_t                                       queueFamilyIndex,
+                                                                       QueueFamilyDataGraphPropertiesARM const &      queueFamilyDataGraphProperties,
+                                                                       DataGraphOpticalFlowImageFormatInfoARM const & opticalFlowImageFormatInfo,
+                                                                       Dispatch const &                               d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM &&
+                       "Function <vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM> requires <VK_ARM_data_graph_optical_flow>" );
+#  endif
+
+    std::vector<DataGraphOpticalFlowImageFormatPropertiesARM, DataGraphOpticalFlowImageFormatPropertiesARMAllocator> imageFormatProperties;
+    uint32_t                                                                                                         formatCount;
+    Result                                                                                                           result;
+    do
+    {
+      result = static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+        m_physicalDevice,
+        queueFamilyIndex,
+        reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+        reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+        &formatCount,
+        nullptr ) );
+      if ( ( result == Result::eSuccess ) && formatCount )
+      {
+        imageFormatProperties.resize( formatCount );
+        result = static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+          m_physicalDevice,
+          queueFamilyIndex,
+          reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+          reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+          &formatCount,
+          reinterpret_cast<VkDataGraphOpticalFlowImageFormatPropertiesARM *>( imageFormatProperties.data() ) ) );
+      }
+    } while ( result == Result::eIncomplete );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM" );
+    VULKAN_HPP_ASSERT( formatCount <= imageFormatProperties.size() );
+    if ( formatCount < imageFormatProperties.size() )
+    {
+      imageFormatProperties.resize( formatCount );
+    }
+    return detail::createResultValueType( result, std::move( imageFormatProperties ) );
+  }
+
+  // wrapper function for command vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM.html
+  template <typename DataGraphOpticalFlowImageFormatPropertiesARMAllocator,
+            typename Dispatch,
+            typename std::enable_if<
+              std::is_same<typename DataGraphOpticalFlowImageFormatPropertiesARMAllocator::value_type, DataGraphOpticalFlowImageFormatPropertiesARM>::value,
+              int>::type,
+            typename std::enable_if<IS_DISPATCHED( vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM ), bool>::type>
+  VULKAN_HPP_NODISCARD VULKAN_HPP_INLINE
+    typename ResultValueType<std::vector<DataGraphOpticalFlowImageFormatPropertiesARM, DataGraphOpticalFlowImageFormatPropertiesARMAllocator>>::type
+    PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+      uint32_t                                                      queueFamilyIndex,
+      QueueFamilyDataGraphPropertiesARM const &                     queueFamilyDataGraphProperties,
+      DataGraphOpticalFlowImageFormatInfoARM const &                opticalFlowImageFormatInfo,
+      DataGraphOpticalFlowImageFormatPropertiesARMAllocator const & dataGraphOpticalFlowImageFormatPropertiesARMAllocator,
+      Dispatch const &                                              d ) const
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+#  if ( VULKAN_HPP_DISPATCH_LOADER_DYNAMIC == 1 )
+    VULKAN_HPP_ASSERT( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM &&
+                       "Function <vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM> requires <VK_ARM_data_graph_optical_flow>" );
+#  endif
+
+    std::vector<DataGraphOpticalFlowImageFormatPropertiesARM, DataGraphOpticalFlowImageFormatPropertiesARMAllocator> imageFormatProperties(
+      dataGraphOpticalFlowImageFormatPropertiesARMAllocator );
+    uint32_t formatCount;
+    Result   result;
+    do
+    {
+      result = static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+        m_physicalDevice,
+        queueFamilyIndex,
+        reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+        reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+        &formatCount,
+        nullptr ) );
+      if ( ( result == Result::eSuccess ) && formatCount )
+      {
+        imageFormatProperties.resize( formatCount );
+        result = static_cast<Result>( d.vkGetPhysicalDeviceQueueFamilyDataGraphOpticalFlowImageFormatsARM(
+          m_physicalDevice,
+          queueFamilyIndex,
+          reinterpret_cast<VkQueueFamilyDataGraphPropertiesARM const *>( &queueFamilyDataGraphProperties ),
+          reinterpret_cast<VkDataGraphOpticalFlowImageFormatInfoARM const *>( &opticalFlowImageFormatInfo ),
+          &formatCount,
+          reinterpret_cast<VkDataGraphOpticalFlowImageFormatPropertiesARM *>( imageFormatProperties.data() ) ) );
+      }
+    } while ( result == Result::eIncomplete );
+    detail::resultCheck( result, VULKAN_HPP_NAMESPACE_STRING "::PhysicalDevice::getQueueFamilyDataGraphOpticalFlowImageFormatsARM" );
+    VULKAN_HPP_ASSERT( formatCount <= imageFormatProperties.size() );
+    if ( formatCount < imageFormatProperties.size() )
+    {
+      imageFormatProperties.resize( formatCount );
+    }
+    return detail::createResultValueType( result, std::move( imageFormatProperties ) );
+  }
+#endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
+
   //=== VK_NV_compute_occupancy_priority ===
 
   // wrapper function for command vkCmdSetComputeOccupancyPriorityNV, see
@@ -32875,6 +33627,17 @@ VULKAN_HPP_EXPORT namespace VULKAN_HPP_NAMESPACE
   }
 #  endif /* VULKAN_HPP_DISABLE_ENHANCED_MODE */
 #endif   /*VK_USE_PLATFORM_UBM_SEC*/
+
+  //=== VK_EXT_primitive_restart_index ===
+
+  // wrapper function for command vkCmdSetPrimitiveRestartIndexEXT, see
+  // https://registry.khronos.org/vulkan/specs/latest/man/html/vkCmdSetPrimitiveRestartIndexEXT.html
+  template <typename Dispatch, typename std::enable_if<IS_DISPATCHED( vkCmdSetPrimitiveRestartIndexEXT ), bool>::type>
+  VULKAN_HPP_INLINE void CommandBuffer::setPrimitiveRestartIndexEXT( uint32_t primitiveRestartIndex, Dispatch const & d ) const VULKAN_HPP_NOEXCEPT
+  {
+    VULKAN_HPP_ASSERT( d.getVkHeaderVersion() == VK_HEADER_VERSION );
+    d.vkCmdSetPrimitiveRestartIndexEXT( static_cast<VkCommandBuffer>( m_commandBuffer ), primitiveRestartIndex );
+  }
 
 }  // namespace VULKAN_HPP_NAMESPACE
 #endif
